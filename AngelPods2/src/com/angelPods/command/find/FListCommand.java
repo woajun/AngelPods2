@@ -6,8 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.angelPods.command.Command;
-import com.angelPods.dao.FindBoardDao;
-import com.angelPods.dto.FindBoardDto;
+import com.angelPods.dao.FImgDao;
+import com.angelPods.dao.FbDao;
+import com.angelPods.dto.FbDto;
 
 public class FListCommand implements Command {
 
@@ -15,12 +16,19 @@ public class FListCommand implements Command {
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 
-		FindBoardDao dao = FindBoardDao.getInstance();
-		ArrayList<FindBoardDto> dto = dao.list();
+		FbDao fbDao = FbDao.getInstance();
 		
-//		String directory = request.getSessㄴion().getServletContext().getRealPath("/images/");
-		request.setAttribute("list", dto);
-		request.setAttribute("f_list", "yes");
+		ArrayList<FbDto> fbDto = fbDao.list();
+		
+		request.setAttribute("list", fbDto);
+		
+		
+		
+		
+		
+		
+		
+		request.setAttribute("Valid-list", "yes");
 	}
 
 }

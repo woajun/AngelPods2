@@ -9,39 +9,51 @@ public class FbDto {
 	private int cNum;
 	private int cdNum;
 	private Timestamp timestamp;
-	private String addr;
+	private String sido;
+	private String gue;
+	private String dong;
 	private String addrDetail;
 	private String title;
 	private String contents;
 	private String sn;
 	private String lat;
-	private String lon;
+	private String lng;
 	private int chatHit;
 	private int hit;
 	private int fState;
+	private String cName;
+	private String cdName;
+	private String thumbnailImage;
 	
 	public FbDto() {}
+	
 
-	public FbDto(int fbNum, String userId, int cNum, int cdNum, Timestamp timestamp,
-			String addr, String addrDetail, String title, String contents, String sn, String lat, String lon,
-			int chatHit, int hit, int fState) {
+	public FbDto(int fbNum, String userId, int cNum, int cdNum, Timestamp timestamp, String sido, String gue,
+			String dong, String addrDetail, String title, String contents, String sn, String lat, String lng,
+			int chatHit, int hit, int fState, String cName, String cdName, String thumbnailImage) {
 		super();
 		this.fbNum = fbNum;
 		this.userId = userId;
 		this.cNum = cNum;
 		this.cdNum = cdNum;
 		this.timestamp = timestamp;
-		this.addr = addr;
+		this.sido = sido;
+		this.gue = gue;
+		this.dong = dong;
 		this.addrDetail = addrDetail;
 		this.title = title;
 		this.contents = contents;
 		this.sn = sn;
 		this.lat = lat;
-		this.lon = lon;
+		this.lng = lng;
 		this.chatHit = chatHit;
 		this.hit = hit;
 		this.fState = fState;
+		this.cName = cName;
+		this.cdName = cdName;
+		this.thumbnailImage = thumbnailImage;
 	}
+
 
 	public int getFbNum() {
 		return fbNum;
@@ -83,13 +95,36 @@ public class FbDto {
 		this.timestamp = timestamp;
 	}
 
-	public String getAddr() {
-		return addr;
+
+	public String getSido() {
+		return sido;
 	}
 
-	public void setAddr(String addr) {
-		this.addr = addr;
+
+	public void setSido(String sido) {
+		this.sido = sido;
 	}
+
+
+	public String getGue() {
+		return gue;
+	}
+
+
+	public void setGue(String gue) {
+		this.gue = gue;
+	}
+
+
+	public String getDong() {
+		return dong;
+	}
+
+
+	public void setDong(String dong) {
+		this.dong = dong;
+	}
+
 
 	public String getAddrDetail() {
 		return addrDetail;
@@ -131,12 +166,12 @@ public class FbDto {
 		this.lat = lat;
 	}
 
-	public String getLon() {
-		return lon;
+	public String getLng() {
+		return lng;
 	}
 
-	public void setLon(String lon) {
-		this.lon = lon;
+	public void setLng(String lng) {
+		this.lng = lng;
 	}
 
 	public int getChatHit() {
@@ -162,4 +197,30 @@ public class FbDto {
 	public void setfState(int fState) {
 		this.fState = fState;
 	}
+
+	public String getcName() {
+		return cName;
+	}
+
+	public void setcName(String cName) {
+		this.cName = cName;
+	}
+
+	public String getCdName() {
+		return cdName;
+	}
+
+	public void setCdName(String cdName) {
+		this.cdName = cdName;
+	}
+
+	public String getThumbnailImage() {
+		return thumbnailImage;
+	}
+
+	public void setThumbnailImage(String thumbnailImage) {
+		this.thumbnailImage = thumbnailImage;
+	}
+	
+	
 }

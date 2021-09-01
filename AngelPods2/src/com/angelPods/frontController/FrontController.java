@@ -17,8 +17,6 @@ import com.angelPods.command.find.FModifyCommand;
 import com.angelPods.command.find.FModifyViewCommand;
 import com.angelPods.command.find.FWriteViewCommand;
 import com.angelPods.command.find.fWriteActionCommand;
-import com.angelPods.command.find.fWriteCategoryActionCommand;
-import com.angelPods.command.find.fWriteCategoryViewCommand;
 import com.angelPods.command.member.MContentCommand;
 import com.angelPods.command.member.MJoinCommand;
 import com.angelPods.command.member.MLoginCommand;
@@ -99,14 +97,14 @@ public class FrontController extends HttpServlet {
 //------------------find---------------------
 		
 		if(com.equals("f_write_category_action.do")) {
-			command = new fWriteCategoryActionCommand();
-			command.execute(request, response);
-			viewPage = "/find/write_category_action.jsp";
-		
+//			command = new fWriteCategoryActionCommand();
+//			command.execute(request, response);
+//			viewPage = "/find/write_category_action.jsp";
+//		
 		} else if(com.equals("f_write_category_view.do")) {
-			command = new fWriteCategoryViewCommand();
-			command.execute(request, response);
-			viewPage = "/find/write_category_view.jsp";
+//			command = new fWriteCategoryViewCommand();
+//			command.execute(request, response);
+//			viewPage = "/find/write_category_view.jsp";
 			
 		} else if(com.equals("f_write_action.do")) {
 			command = new fWriteActionCommand();
@@ -116,7 +114,7 @@ public class FrontController extends HttpServlet {
 		} else if (com.equals("f_list.do")) {
 			command = new FListCommand();
 			command.execute(request, response);
-			viewPage = "/board/list_view.jsp";
+			viewPage = "/find/list_view.jsp";
 		
 		} else if (com.equals("f_content_view.do")) {
 			command = new FContentCommand();
