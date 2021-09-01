@@ -15,6 +15,7 @@ import com.angelPods.command.find.FDeleteCommand;
 import com.angelPods.command.find.FListCommand;
 import com.angelPods.command.find.FModifyCommand;
 import com.angelPods.command.find.FModifyViewCommand;
+import com.angelPods.command.find.FWriteViewCommand;
 import com.angelPods.command.find.fWriteActionCommand;
 import com.angelPods.command.find.fWriteCategoryActionCommand;
 import com.angelPods.command.find.fWriteCategoryViewCommand;
@@ -27,10 +28,10 @@ import com.angelPods.command.member.MPrintAll;
 import com.angelPods.command.member.MWithdrawCommand;
 
 @WebServlet("*.do")
-public class BFrontController extends HttpServlet {
+public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public BFrontController() {
+    public FrontController() {
         super();
     }
 
@@ -136,6 +137,11 @@ public class BFrontController extends HttpServlet {
 			command = new FModifyCommand();
 			command.execute(request, response);
 			viewPage = "/find/modify_action.jsp";
+			
+		} else if (com.equals("f_write_view.do")) {
+			command = new FWriteViewCommand();
+			command.execute(request, response);
+			viewPage = "/find/write_view.jsp";
 		}
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
