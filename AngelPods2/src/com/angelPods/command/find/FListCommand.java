@@ -18,7 +18,7 @@ public class FListCommand implements Command {
 		FindBoardDao dao = FindBoardDao.getInstance();
 		ArrayList<FindBoardDto> dto = dao.list();
 		
-		String directory = request.getSession().getServletContext().getRealPath("/images/");
+//		String directory = request.getSessㄴion().getServletContext().getRealPath("/images/");
 		request.setAttribute("list", dto);
 		request.setAttribute("f_list", "yes");
 	}
