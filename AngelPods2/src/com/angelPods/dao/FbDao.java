@@ -264,27 +264,28 @@ public class FbDao {
 		}
 	}
 
-	public void modify(int fbNum, int cNum, int cdNum, String imageSystemName, String addr, String addrDetail,
-			String title, String contents, String sn, String lat, String lon) {
+	public void modify(int fbNum, int cNum, int cdNum, String sido, String gue, String dong, String addrDetail,
+			String title, String contents, String sn, String lat, String lng) {
 		// TODO Auto-generated method stub
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
 		try {
 			con = dataSource.getConnection();
-			String query = "update find_board set c_num=?, cd_num=?, thumbnailimage=?, addr=?, addrdetail=?, title=?, contents=?, sn=?, lat=?, lon=? where fb_num = ?";
+			String query = "update find_board set c_num=?, cd_num=?, sido=?, gue=?, dong=?, addrdetail=?, title=?, contents=?, sn=?, lat=?, lng=? where fb_num = ?";
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, cNum);
 			pstmt.setInt(2, cdNum);
-			pstmt.setString(3, imageSystemName);
-			pstmt.setString(4, addr);
-			pstmt.setString(5, addrDetail);
-			pstmt.setString(6, title);
-			pstmt.setString(7, contents);
-			pstmt.setString(8, sn);
-			pstmt.setString(9, lat);
-			pstmt.setString(10, lon);
-			pstmt.setInt(11, fbNum);
+			pstmt.setString(3, sido);
+			pstmt.setString(4, gue);
+			pstmt.setString(5, dong);
+			pstmt.setString(6, addrDetail);
+			pstmt.setString(7, title);
+			pstmt.setString(8, contents);
+			pstmt.setString(9, sn);
+			pstmt.setString(10, lat);
+			pstmt.setString(11, lng);
+			pstmt.setInt(12, fbNum);
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -297,5 +298,4 @@ public class FbDao {
 			}
 		}
 	}
-
 }

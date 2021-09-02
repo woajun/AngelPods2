@@ -3,7 +3,6 @@ package com.angelPods.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -11,7 +10,6 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import com.angelPods.dto.FImgDto;
-import com.angelPods.dto.FbDto;
 
 public class FImgDao {
 
@@ -104,5 +102,33 @@ public class FImgDao {
 			}
 		}
 		return dtos;
+	}
+
+	public int clear(int fbNum) {
+		// TODO Auto-generated method stub
+		int ri = -1;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = dataSource.getConnection();
+			String query = "DELETE FROM FIMAGES WHERE FB_NUM = ?";
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, fbNum);
+			pstmt.executeUpdate();
+			ri = 1;
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		}
+		return ri;
 	}
 }

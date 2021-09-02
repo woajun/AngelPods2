@@ -12,7 +12,7 @@ import com.angelPods.dao.FbDao;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-public class fWriteActionCommand implements Command {
+public class FWriteActionCommand implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {

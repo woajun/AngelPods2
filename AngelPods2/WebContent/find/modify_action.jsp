@@ -11,7 +11,7 @@
   		document.location.href="../find/list_view.jsp";
 	</script>
 	
-<% } else if(ri == 0){ %>
+<% } else if(ri == -1){ %>
 
    	<script language = "javascript">
    		alert("게시글 수정에 실패했습니다.");

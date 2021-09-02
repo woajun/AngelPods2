@@ -15,8 +15,8 @@ import com.angelPods.command.find.FDeleteCommand;
 import com.angelPods.command.find.FListCommand;
 import com.angelPods.command.find.FModifyCommand;
 import com.angelPods.command.find.FModifyViewCommand;
+import com.angelPods.command.find.FWriteActionCommand;
 import com.angelPods.command.find.FWriteViewCommand;
-import com.angelPods.command.find.fWriteActionCommand;
 import com.angelPods.command.member.MContentCommand;
 import com.angelPods.command.member.MJoinCommand;
 import com.angelPods.command.member.MLoginCommand;
@@ -107,7 +107,7 @@ public class FrontController extends HttpServlet {
 //			viewPage = "/find/write_category_view.jsp";
 			
 		} else if(com.equals("f_write_action.do")) {
-			command = new fWriteActionCommand();
+			command = new FWriteActionCommand();
 			command.execute(request, response);
 			viewPage = "/find/write_action.jsp";
 		
