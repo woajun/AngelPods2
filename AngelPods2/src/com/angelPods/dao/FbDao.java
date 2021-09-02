@@ -215,7 +215,8 @@ public class FbDao {
 	
 	
 	
-	public void delete (int fbNum) {
+	public int delete (int fbNum) {
+		int ri = -1;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -225,6 +226,7 @@ public class FbDao {
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, fbNum);
 			pstmt.executeUpdate();
+			ri = 1;
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -238,6 +240,8 @@ public class FbDao {
 				e2.printStackTrace();
 			}
 		}
+		
+		return ri;
 	}
 
 	public void setThumbnailImage(int boardNum, String imageSystemName) {

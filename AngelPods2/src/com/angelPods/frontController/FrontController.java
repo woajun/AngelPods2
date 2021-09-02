@@ -96,35 +96,25 @@ public class FrontController extends HttpServlet {
 		
 //------------------find---------------------
 		
-		if(com.equals("f_write_category_action.do")) {
-//			command = new fWriteCategoryActionCommand();
-//			command.execute(request, response);
-//			viewPage = "/find/write_category_action.jsp";
-//		
-		} else if(com.equals("f_write_category_view.do")) {
-//			command = new fWriteCategoryViewCommand();
-//			command.execute(request, response);
-//			viewPage = "/find/write_category_view.jsp";
-			
-		} else if(com.equals("f_write_action.do")) {
-			command = new FWriteActionCommand();
-			command.execute(request, response);
-			viewPage = "/find/write_action.jsp";
-		
-		} else if (com.equals("f_list.do")) {
+		if (com.equals("f_list.do")) {
 			command = new FListCommand();
 			command.execute(request, response);
 			viewPage = "/find/list_view.jsp";
 		
+		} else if (com.equals("f_write_view.do")) {
+			command = new FWriteViewCommand();
+			command.execute(request, response);
+			viewPage = "/find/write_view.jsp";
+		
+		} else if(com.equals("f_write_action.do")) {
+			command = new FWriteActionCommand();
+			command.execute(request, response);
+			viewPage = "/find/write_action.jsp";
+			
 		} else if (com.equals("f_content_view.do")) {
 			command = new FContentViewCommand();
 			command.execute(request,response);
 			viewPage = "/find/content_view.jsp";
-			
-		} else if (com.equals("f_delete.do")) {
-			command = new FDeleteCommand();
-			command.execute(request, response);
-			viewPage = "f_list.do";
 			
 		} else if (com.equals("f_modify_view.do")) {
 			command = new FModifyViewCommand();
@@ -135,11 +125,11 @@ public class FrontController extends HttpServlet {
 			command = new FModifyCommand();
 			command.execute(request, response);
 			viewPage = "/find/modify_action.jsp";
-			
-		} else if (com.equals("f_write_view.do")) {
-			command = new FWriteViewCommand();
+
+		} else if (com.equals("f_delete.do")) {
+			command = new FDeleteCommand();
 			command.execute(request, response);
-			viewPage = "/find/write_view.jsp";
+			viewPage = "/find/delete_action.jsp";
 		}
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

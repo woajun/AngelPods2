@@ -156,7 +156,7 @@
 			 	<button type = "button" class="btn btn-dark" onclick="location.href='f_modify_view.do?fbNum=${dto.fbNum}'">수정</button>
 			  </dic>
 			  <dic class="col-6 d-grid ps-1">
-				<button type = "button" class="btn btn-dark" onclick="location.href='f_delete.do?fbNum=${dto.fbNum}'">삭제</button>
+				<button type = "button" class="btn btn-dark" onclick="removeCheck()">삭제</button>
 			  </dic>
 			</div>
           </div>
@@ -207,6 +207,15 @@
 		    	window.location.href = 'f_list.do';
 		    }
 	    }
+	    
+	    function removeCheck() {
+	    	 if (confirm("정말 삭제하시겠습니까?") == true){
+	    	     location.href='f_delete.do?fbNum=${dto.fbNum}'
+	    	 }else{
+	    	     return false;
+	    	 }
+
+    	}
 	</script>
 </body>
 </html>
