@@ -79,6 +79,8 @@
 	        <a type="button" class="btn btn-outline-light" href = "logout.do">로그아웃</a>
 	      </div>
 	      <input id="validMem" value="${ValidMem}" hidden="true">
+	      <input id="name" value="${name}" hidden="true">
+	      <input id="userId" value="${userId}" hidden="true">
 	  </div>
 	</nav>
     <div style="padding-top: 50px;"></div>
@@ -121,7 +123,8 @@
             <div class="row">
               <div class="col-6 text-wrap">
                 <img class="me-1 img-fluid img-profile rounded-circle" src="../image/airpodsMain.jpg" alt="..." style="float:left; width: 30px; height:30px"/>
-                <a href="#?userId=${dto.userId}" class="fw-normal ">${dto.userName}</a>
+                <a href="#?userId=${dto.userId}" class="fw-normal ">${writer.name}</a>
+                <input id="writerId" value = "${dto.userId}" type="hidden">
               </div>
               <div class="col-6">
                 <h5 class="fs-6 fw-bold text-end">${dto.timestamp}</h5>
@@ -176,16 +179,24 @@
 		});
     //============================
 	    const ValidMem = document.getElementById('validMem').value;
-	    const navLogin = document.getElementById('nav-login');
+	    
+    	const userId = document.getElementById('userId').value;
+		const writer = document.getElementById('writerId').value;
+
+		const navLogin = document.getElementById('nav-login');
 	    const navLogout = document.getElementById('nav-logout');
 		const modifyDiv = document.getElementById('modifyDiv');
 	    
 	    if (ValidMem == "yes") {
 	      navLogout.removeAttribute("hidden");
-	      modifyDiv.removeAttribute("hidden");
 	    } else {
 	      navLogin.removeAttribute("hidden");  
-	      modifyDiv.setAttribute("hidden","true");
+	    }
+
+	    if (userId == writer) {
+		    modifyDiv.removeAttribute("hidden");
+	    } else {
+	        modifyDiv.setAttribute("hidden","true");
 	    }
 	    
 	    function goback(){

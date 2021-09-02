@@ -148,60 +148,69 @@ public class FbDao {
 		return dtos;
 	}
 
-//	public FbDto contentView(int fbNum) {
-//		// TODO Auto-generated method stub
-//
-////		upHit(strID);
-//		FbDto dto = null;
-//		
-//		Connection con = null;
-//		PreparedStatement ps = null;
-//		ResultSet rs = null;
-//		
-//		try {
-//			con = dataSource.getConnection();
-//			
+	public FbDto getContent(int fbNum) {
+		FbDto dto = null;
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			
+			String query = "select " + 
+					"    F.fb_num, F.userId, C.name C_NAME , CD.name CD_NAME, " + 
+					"    F.timestamp, F.sido, F.gue, F.dong , F.addrDetail, F.title, F.contents, F.sn, F.lat, F.lng, F.chat_hit, " + 
+					"    F.hit, F.f_state, F.c_num, F.cd_num, fImg.imagesystemname thumbnailImage " + 
+					"from find_board F " + 
+					"    left outer join CATEGORY C on C.c_Num = F.c_num " + 
+					"    left outer join category_detail CD on cd.cd_num = f.cd_num " + 
+					"    left outer join fimages FImg on fimg.fb_num = F.fb_num AND fimg.idx = 1 " + 
+					"where F.fb_num = ?";
 //			String query = "select * from find_board where fb_num = ?";
-//			ps = con.prepareStatement(query);
-//			ps.setInt(1, fbNum);
-//			rs = ps.executeQuery();
-//			if (rs.next()) {
-//				String userId = rs.getString("userId");
-//				int cNum = rs.getInt("c_num");
-//				int cdNum = rs.getInt("cd_num");
-//				String thumbnailImage = rs.getString("thumbnailImage");
-//				Timestamp timestamp = rs.getTimestamp("timestamp");
-//				String addr = rs.getString("addr");
-//				String addrDetail = rs.getString("addrDetail");
-//				String title = rs.getString("title");
-//				String contents = rs.getString("contents");
-//				String sn = rs.getString("sn");
-//				String lat = rs.getString("lat");
-//				String lon = rs.getString("lon");
-//				int hit = rs.getInt("hit");
-//				int chatHit = rs.getInt("chat_hit");
-//				int fState = rs.getInt("f_state");
-//				
-//				dto = new FbDto(
-//						 fbNum,  userId,  cNum,  cdNum, timestamp,
-//						 addr,  addrDetail,  title,  contents,  sn,  lat,  lon,
-//						 chatHit,  hit,  fState);
-//			}
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if(rs != null) rs.close();
-//				if(ps != null) ps.close();
-//				if(con != null) con.close();
-//			} catch (Exception e2) {
-//				e2.printStackTrace();
-//			}
-//		}
-//		return dto;
-//	}
-//	
+			ps = con.prepareStatement(query);
+			ps.setInt(1, fbNum);
+			rs = ps.executeQuery();
+			if (rs.next()) {
+				String userId = rs.getString("userId");
+				int cNum = rs.getInt("c_num");
+				int cdNum = rs.getInt("cd_num");
+				Timestamp timestamp = rs.getTimestamp("timestamp");
+				String sido = rs.getString("sido");
+				String gue = rs.getString("gue");
+				String dong = rs.getString("dong");
+				String addrDetail = rs.getString("addrDetail");
+				String title = rs.getString("title");
+				String contents = rs.getString("contents");
+				String sn = rs.getString("sn");
+				String lat = rs.getString("lat");
+				String lng = rs.getString("lng");
+				int chatHit = rs.getInt("hit");
+				int hit = rs.getInt("chat_hit");
+				int fState = rs.getInt("f_state");
+				String cName = rs.getString("c_name");
+				String cdName = rs.getString("cd_name");
+				String thumbnailImage = rs.getString("thumbnailImage");
+				
+				dto = new FbDto(
+						 fbNum,  userId,  cNum,  cdNum, timestamp,
+						 sido, gue, dong ,  addrDetail,  title,  contents,  sn,  lat,  lng,
+						 chatHit,  hit,  fState, cName, cdName, thumbnailImage);
+				}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(ps != null) ps.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return dto;
+	}
+	
 	
 	
 	public void delete (int fbNum) {

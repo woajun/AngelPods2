@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.angelPods.command.Command;
-import com.angelPods.command.find.FContentCommand;
+import com.angelPods.command.find.FContentViewCommand;
 import com.angelPods.command.find.FDeleteCommand;
 import com.angelPods.command.find.FListCommand;
 import com.angelPods.command.find.FModifyCommand;
@@ -117,7 +117,7 @@ public class FrontController extends HttpServlet {
 			viewPage = "/find/list_view.jsp";
 		
 		} else if (com.equals("f_content_view.do")) {
-			command = new FContentCommand();
+			command = new FContentViewCommand();
 			command.execute(request,response);
 			viewPage = "/find/content_view.jsp";
 			
