@@ -32,7 +32,7 @@ public class FbDao {
 	}
 	
 	public int write(String userId, int cNum, int cdNum,
-			String addr, String addrDetail, String title, String contents, String sn, String lat, String lon) {
+			String sido, String gue, String dong , String addrDetail, String title, String contents, String sn, String lat, String lng) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
@@ -53,20 +53,22 @@ public class FbDao {
 		try {
 			con = dataSource.getConnection();
 			String query = "insert into find_board "
-					+ "(fb_num, userid, c_num, cd_num, addr, addrdetail, title, contents, sn, lat, lon) values"
-					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+					+ "(fb_num, userid, c_num, cd_num, sido, gue, dong, addrdetail, title, contents, sn, lat, lng) values"
+					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, fbNum);
 			pstmt.setString(2, userId);
 			pstmt.setInt(3, cNum);
 			pstmt.setInt(4, cdNum);
-			pstmt.setString(5, addr);
-			pstmt.setString(6, addrDetail);
-			pstmt.setString(7, title);
-			pstmt.setString(8, contents);
-			pstmt.setString(9, sn);
-			pstmt.setString(10, lat);
-			pstmt.setString(11, lon);
+			pstmt.setString(5, sido);
+			pstmt.setString(6, gue);
+			pstmt.setString(7, dong);
+			pstmt.setString(8, addrDetail);
+			pstmt.setString(9, title);
+			pstmt.setString(10, contents);
+			pstmt.setString(11, sn);
+			pstmt.setString(12, lat);
+			pstmt.setString(13, lng);
 			pstmt.executeUpdate();
 		} catch(Exception e) {
 			e.printStackTrace();

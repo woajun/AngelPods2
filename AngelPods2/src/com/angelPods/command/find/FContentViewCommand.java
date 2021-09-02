@@ -19,8 +19,6 @@ public class FContentViewCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession();
-		
 		int fbNum = Integer.parseInt(request.getParameter("fbNum"));
 		
 		FbDao fbDao = FbDao.getInstance();

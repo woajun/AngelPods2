@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%--     
 <% if(session.getAttribute("ValidMem") == null){ %>
 <script>location.href="../member/login.jsp";</script> 
 <% } %>     
- --%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
@@ -369,12 +367,12 @@
 <script>
 
 function imgAddName(){
-let files = preview.querySelectorAll('input');
-console.log(files);
-for (let i = 0; i < files.length; i++) {
-  const element = files[i];
-  element.setAttribute('name','image' + i);
-}
+	let files = preview.querySelectorAll('input');
+	console.log(files);
+	for (let i = 0; i < files.length; i++) {
+	  const element = files[i];
+	  element.setAttribute('name','image' + i);
+	}
 }
 
 const photoBtn = document.getElementById('photoBtn');

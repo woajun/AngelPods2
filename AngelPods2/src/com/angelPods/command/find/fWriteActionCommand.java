@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.angelPods.command.Command;
-import com.angelPods.dao.FindBoardDao;
-import com.angelPods.dao.ImagesDao;
+import com.angelPods.dao.FImgDao;
+import com.angelPods.dao.FbDao;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -19,8 +19,10 @@ public class fWriteActionCommand implements Command {
 		// TODO Auto-generated method stub
 
 		HttpSession session = request.getSession();
-		String userId = (String) session.getAttribute("id");
-		FindBoardDao dao = FindBoardDao.getInstance();
+		String userId = (String) session.getAttribute("userId");
+		
+		FbDao dao = FbDao.getInstance();
+		FImgDao fImgDao = FImgDao.getInstance();
 		
 		//multipartRequest 생성자
 		MultipartRequest mRequest = null;
@@ -36,37 +38,31 @@ public class fWriteActionCommand implements Command {
 		int cNum = Integer.parseInt(mRequest.getParameter("cNum"));
 		int cdNum = Integer.parseInt(mRequest.getParameter("cdNum"));
 		String sn = mRequest.getParameter("sn");
-		String lat = mRequest.getParameter("latitude");
-		String lon = mRequest.getParameter("longitude");
-		String addr = mRequest.getParameter("addr");
+		String lat = mRequest.getParameter("lat");
+		String lng = mRequest.getParameter("lng");
+		String sido = mRequest.getParameter("sido");
+		String gue = mRequest.getParameter("gue");
+		String dong = mRequest.getParameter("dong");
 		String addrDetail = mRequest.getParameter("addrDetail");
 		String title = mRequest.getParameter("title");
 		String contents = mRequest.getParameter("contents");
 		
-		String image = null;
-		int fbNum = dao.write(
-				 userId,  cNum,  cdNum, 
-				 addr,  addrDetail,  title,  contents,  sn,  lat,  lon);
+		int fbNum = dao.write(userId,  cNum,  cdNum, sido, gue ,dong ,  addrDetail,  title,  contents,  sn,  lat,  lng);
 		
 		//이미지를 생성해서 DB에 넣기
-		try {
-			String imageSystemName = mRequest.getFilesystemName("image");
-			String imageName = mRequest.getOriginalFileName("image");
-			int imageIndex = 0;
-			ImagesDao imagesDao = ImagesDao.getInstance();
-			imagesDao.imageSetDB(imageSystemName, imageName, imageIndex, fbNum);
-			
-			if (imageIndex == 0) {
-				dao.setThumbnailImage(fbNum, imageSystemName);
+		
+		for (int i = 1; i <= 10; i++) {
+			String image = "image"+i;
+			try {
+				String imageSystemName = mRequest.getFilesystemName(image);
+				String imageName = mRequest.getOriginalFileName(image);
+				if(imageSystemName != null) {
+					fImgDao.imageSetDB(imageSystemName, imageName, fbNum, i);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			System.out.println("이미지를 DB에 넣는 것을 실패했습니다.");
 		}
-		
 		request.setAttribute("ri", 1);
-		
 	}
-
 }

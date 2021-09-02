@@ -38,7 +38,7 @@ public class FImgDao {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		
-		String query = "insert into find_image values (?,?,?,?)";
+		String query = "insert into FIMAGES values (?,?,?,?)";
 
 		int ri = 0;
 		try {
