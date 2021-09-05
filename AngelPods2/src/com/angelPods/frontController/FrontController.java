@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.angelPods.command.Command;
+import com.angelPods.command.device.DAddCommand;
+import com.angelPods.command.device.DAddViewCommand;
+import com.angelPods.command.device.DDeleteCommand;
 import com.angelPods.command.find.FContentViewCommand;
 import com.angelPods.command.find.FDeleteCommand;
 import com.angelPods.command.find.FListCommand;
@@ -131,6 +134,25 @@ public class FrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "/find/delete_action.jsp";
 		}
+		
+//------------------Device---------------------
+
+		if (com.equals("d_add_view.do")) {
+			command = new DAddViewCommand();
+			command.execute(request, response);
+			viewPage = "/device/add_view.jsp";
+			
+		} else if (com.equals("d_add.do")) {
+			command = new DAddCommand();
+			command.execute(request, response);
+			viewPage = "/device/add_action.jsp";
+			
+		} else if (com.equals("d_delete.do")) {
+			command = new DDeleteCommand();
+			command.execute(request, response);
+			viewPage = "/device/delete_action.jsp";
+		}
+		
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request,response);

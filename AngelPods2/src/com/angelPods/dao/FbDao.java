@@ -48,7 +48,17 @@ public class FbDao {
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
+			
+		//TODO 0905 추가함 테스트필요.================
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
+		//===============================
 		
 		try {
 			con = dataSource.getConnection();
@@ -242,30 +252,6 @@ public class FbDao {
 		}
 		
 		return ri;
-	}
-
-	public void setThumbnailImage(int boardNum, String imageSystemName) {
-		// TODO Auto-generated method stub
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		
-		try {
-			con = dataSource.getConnection();
-			String query = "update find_board set thumbnailimage = ? where fb_num = ?";
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, imageSystemName);
-			pstmt.setInt(2, boardNum);
-			pstmt.executeUpdate();
-		} catch(Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
 	}
 
 	public void modify(int fbNum, int cNum, int cdNum, String sido, String gue, String dong, String addrDetail,
