@@ -91,7 +91,7 @@ public class DevDao {
 		ResultSet rs = null;
 		
 		try {
-			String query ="select D.DevNum, D.userid, D.cd_num, D.sn, I.imagesystemname thumbnail "
+			String query ="select D.DevNum, D.userid, D.cd_num, D.sn, D.timestamp, I.imagesystemname thumbnail "
 					+ "from DEVICE D "
 					+ "	left outer join DEVIMG I on D.devnum = I.devnum and I.idx = 1 "
 					+ "where USERID like ? "
@@ -104,7 +104,7 @@ public class DevDao {
 			while(rs.next()) {
 				int devNum = rs.getInt("devnum");
 //				String userId = rs.getString("userId");
-				int cdNum = rs.getInt("cdNum");
+				int cdNum = rs.getInt("cd_Num");
 				String sn = rs.getString("sn");
 				Timestamp timestamp = rs.getTimestamp("timestamp");
 				String thumbnail = rs.getString("thumbnail");

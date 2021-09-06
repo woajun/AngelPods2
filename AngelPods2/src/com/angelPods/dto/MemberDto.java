@@ -12,13 +12,13 @@ public class MemberDto {
 	private String addr;
 	private int rankId;
 	private String lat;
-	private String lon;
+	private String lng;
 	private String profilImage;
 	
 	public MemberDto() {}
 	
 	public MemberDto(String userId, String pw, String name, String eMail, Timestamp rDate, String addr, int rankId,
-			String lat, String lon, String profilImage) {
+			String lat, String lng, String profilImage) {
 		super();
 		this.userId = userId;
 		this.pw = pw;
@@ -28,7 +28,7 @@ public class MemberDto {
 		this.addr = addr;
 		this.rankId = rankId;
 		this.lat = lat;
-		this.lon = lon;
+		this.lng = lng;
 		this.profilImage = profilImage;
 	}
 	
@@ -80,11 +80,11 @@ public class MemberDto {
 	public void setLat(String lat) {
 		this.lat = lat;
 	}
-	public String getLon() {
-		return lon;
+	public String getLng() {
+		return lng;
 	}
-	public void setLon(String lon) {
-		this.lon = lon;
+	public void setLng(String lng) {
+		this.lng = lng;
 	}
 	public String getProfilImage() {
 		return profilImage;

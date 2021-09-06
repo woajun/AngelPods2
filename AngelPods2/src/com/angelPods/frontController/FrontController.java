@@ -20,6 +20,13 @@ import com.angelPods.command.find.FModifyCommand;
 import com.angelPods.command.find.FModifyViewCommand;
 import com.angelPods.command.find.FWriteActionCommand;
 import com.angelPods.command.find.FWriteViewCommand;
+import com.angelPods.command.lost.LContentViewCommand;
+import com.angelPods.command.lost.LDeleteCommand;
+import com.angelPods.command.lost.LListCommand;
+import com.angelPods.command.lost.LModifyCommand;
+import com.angelPods.command.lost.LModifyViewCommand;
+import com.angelPods.command.lost.LWriteActionCommand;
+import com.angelPods.command.lost.LWriteViewCommand;
 import com.angelPods.command.member.MContentCommand;
 import com.angelPods.command.member.MJoinCommand;
 import com.angelPods.command.member.MLoginCommand;
@@ -27,6 +34,8 @@ import com.angelPods.command.member.MLogoutCommand;
 import com.angelPods.command.member.MModifyCommand;
 import com.angelPods.command.member.MPrintAll;
 import com.angelPods.command.member.MWithdrawCommand;
+import com.angelPods.command.mypage.MyContentsViewCommand;
+import com.angelPods.command.mypage.MyMainViewCommand;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -135,6 +144,44 @@ public class FrontController extends HttpServlet {
 			viewPage = "/find/delete_action.jsp";
 		}
 		
+//------------------LOST---------------------
+		
+		if (com.equals("l_list.do")) {
+			command = new LListCommand();
+			command.execute(request, response);
+			viewPage = "/lost/list_view.jsp";
+			
+		} else if (com.equals("l_write_view.do")) {
+			command = new LWriteViewCommand();
+			command.execute(request, response);
+			viewPage = "/lost/write_view.jsp";
+			
+		} else if(com.equals("l_write_action.do")) {
+			command = new LWriteActionCommand();
+			command.execute(request, response);
+			viewPage = "/lost/write_action.jsp";
+			
+		} else if (com.equals("l_content_view.do")) {
+			command = new LContentViewCommand();
+			command.execute(request,response);
+			viewPage = "/lost/content_view.jsp";
+			
+		} else if (com.equals("l_modify_view.do")) {
+			command = new LModifyViewCommand();
+			command.execute(request, response);
+			viewPage = "/lost/modify_view.jsp";
+			
+		} else if (com.equals("l_modify.do")) {
+			command = new LModifyCommand();
+			command.execute(request, response);
+			viewPage = "/lost/modify_action.jsp";
+			
+		} else if (com.equals("l_delete.do")) {
+			command = new LDeleteCommand();
+			command.execute(request, response);
+			viewPage = "/lost/delete_action.jsp";
+		}
+		
 //------------------Device---------------------
 
 		if (com.equals("d_add_view.do")) {
@@ -152,7 +199,19 @@ public class FrontController extends HttpServlet {
 			command.execute(request, response);
 			viewPage = "/device/delete_action.jsp";
 		}
+
+//------------------mypage---------------------
 		
+		if (com.equals("my_main_view.do")) {
+			command = new MyMainViewCommand();
+			command.execute(request, response);
+			viewPage = "/mypage/main.jsp";
+			
+		} else if (com.equals("my_contents_view.do")) {
+			command = new MyContentsViewCommand();
+			command.execute(request, response);
+			viewPage = "/mypage/contents.jsp";
+		}
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request,response);

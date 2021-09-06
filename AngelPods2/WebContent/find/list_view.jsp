@@ -99,13 +99,13 @@ if(request.getAttribute("Valid-list") == null){ %>
             <a class="nav-link text-white" href="../find/list_view.jsp">습득물보기</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#">분실물보기</a>
+            <a class="nav-link text-white" href="../lost/list_view.jsp">분실물보기</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="../find/write_view.jsp">습득신고</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#">분실신고</a>
+            <a class="nav-link text-white" href="../lost/write_view.jsp">분실신고</a>
           </li>
         </ul>
         <div id ="nav-login" hidden="true">  
@@ -161,20 +161,12 @@ if(request.getAttribute("Valid-list") == null){ %>
         <div class="container ">
 
           <!-- 습득물/분실물 -->
-          <div class="row" >
-            <div class="text-center">
-              <div class="serchBox mx-3 ">
-                <div class="row mt-1">
-                  <div class="col-6 d-grid">
-                    <input type="radio" class="btn-check" name="options33" id="op1" autocomplete="off" checked>
-                    <label class="btn btn-outline-secondary" for="op1">습득물</label>
-                  </div>
-                  <div class="col-6 d-grid">
-                    <input type="radio" class="btn-check" name="options33" id="op2" autocomplete="off">
-                    <label class="btn btn-outline-secondary" for="op2">분실물</label>
-                  </div>
-                </div>
-              </div>
+          <div class="row mt-1" >
+            <div class="col-6 d-grid pe-1">
+            	<a class = "btn btn-secondary" href="#">습득물</a>
+            </div>
+            <div class="col-6 d-grid ps-1">
+            	<a class = "btn btn-outline-secondary" href="l_list.do">분실물</a>
             </div>
           </div>
 
