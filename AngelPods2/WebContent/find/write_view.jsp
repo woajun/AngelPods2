@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <% if(session.getAttribute("ValidMem") == null){ %>
 <script>location.href="../member/login.jsp";</script> 
 <% } %>     
+
+<% if(request.getAttribute("Valid-write") == null){ %>
+	<jsp:forward page = "f_write_view.do"/>
+<% } %>
+
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
 <% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>

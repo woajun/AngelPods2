@@ -25,7 +25,7 @@ public class FWriteViewCommand implements Command {
 		
 		request.setAttribute("cList", cList);
 		request.setAttribute("cdList", cdList);
-		
+		request.setAttribute("Valid-write", "yes");
 	}
 
 }

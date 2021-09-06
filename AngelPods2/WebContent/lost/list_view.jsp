@@ -402,7 +402,7 @@ if(request.getAttribute("Valid-list") == null){ %>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6980627efdafc9b33ee3f2e602c8f9da&libraries=services"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<!-- <script src="../find/find.js/list_view.js?v=<%=System.currentTimeMillis() %>"></script> -->
+<!-- <script src="../lost/lost.js/list_view.js?v=<%=System.currentTimeMillis() %>"></script> -->
 <script>
 let boardItem = document.getElementsByClassName("boardItem");
 let lbNum = document.getElementsByClassName("lbNum");

@@ -194,13 +194,13 @@ header.masthead .masthead-heading {
             <a class="nav-link text-white" href="find/list_view.jsp">습득물보기</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#">분실물보기</a>
+            <a class="nav-link text-white" href="lost/list_view.jsp">분실물보기</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="find/write_addr_view.jsp">습득신고</a>
+            <a class="nav-link text-white" href="find/write_view.jsp">습득신고</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#">분실신고</a>
+            <a class="nav-link text-white" href="lost/write_view.jsp">분실신고</a>
           </li>
         </ul>
         <div id="nav-login" hidden="true">  
@@ -208,7 +208,7 @@ header.masthead .masthead-heading {
           <a type="button" class="btn btn-outline-light text-white " href="member/join.jsp">회원가입</a>
         </div>
         <div id="nav-logout" hidden="true" class="text-white">
-          <a href="#" class="text-white">${name}</a> 님
+          <a href="mypage/main.jsp" class="text-white">${name}</a> 님
           <a type="button" class="btn btn-outline-light" href="logout.do">로그아웃</a>
         </div>
         <input id="validMem" value="${ValidMem}" hidden="true">
@@ -220,7 +220,7 @@ header.masthead .masthead-heading {
         <div class="container">
             <div class="masthead-subheading">Welcome To Angel Pods!</div>
             <div class="masthead-heading lh-sm">기기를 등록하고<br>분실에 대비하세요!</div>
-            <a class="btn btn-primary btn-xl " href="#">등록하기</a>
+            <a class="btn btn-primary btn-xl " href="device/add_view.jsp">등록하기</a>
         </div>
     </header>
     <!-- Services-->

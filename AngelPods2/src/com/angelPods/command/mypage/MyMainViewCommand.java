@@ -8,7 +8,9 @@ import javax.servlet.http.HttpSession;
 
 import com.angelPods.command.Command;
 import com.angelPods.dao.DevDao;
+import com.angelPods.dao.MemberDao;
 import com.angelPods.dto.DevDto;
+import com.angelPods.dto.MemberDto;
 
 public class MyMainViewCommand implements Command {
 
@@ -17,9 +19,17 @@ public class MyMainViewCommand implements Command {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		String userId = (String) session.getAttribute("userId");
+
 		DevDao devDao = DevDao.getInstance();
-		ArrayList<DevDto> devList = devDao.list(userId);
+		MemberDao mDao = MemberDao.getInstance();
 		
+		ArrayList<DevDto> devList = devDao.list(userId);
+		MemberDto mDto = mDao.contentView(userId);
+		
+		
+		
+		
+		request.setAttribute("mDto",mDto );
 		request.setAttribute("devList", devList);
 		request.setAttribute("Valid-mypage", "yes");
 	}
