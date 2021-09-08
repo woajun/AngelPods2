@@ -119,14 +119,13 @@
 
 
 <!-- 기기등록 -->
-<div class="container my-3">
-  <div class="text-center">
+<div class="container my-3 text-center">
 	<h1>기기정보입력</h1>
-  </div>
 </div>
 <div class="container">
   <div class="row">
 	<div class="col-lg-6 ">
+
 	  <div id="showZero" class="zero  ">
 		<img src="../image/airpodsMain.jpg">
 	  </div>
@@ -139,59 +138,66 @@
 	  <div id="showThree" class="myDiv ">
 		<img src="../../images/buds2.jpg">
 	  </div>
+
+	  <div id="show${dto.cdNum}" class="myDiv">
+		  <img src="${dto.image}">
+	  </div>
 	</div>
 	<div class=" col-lg-6 ">
-	  <div class="col-12 fw-bold">
-		<div class="form-group">
-		  <label>모델명</label>
-		  <select id="myselection" class="form-control">
-			<option value="Zero">모델 선택</option>
-			<option value="One">에어팟 프로</option>
-			<option value="Two">에어팟</option>
-			<option value="Three">삼성 버즈</option>
-		  </select>
-		</div>
-		<div class ="row my-2">
-		  <div class = "col-12">
-			<div class="form-check mt-1">
-			  <input class="form-check-input mt-2" type="checkbox" value="" id="check1" disabled>
-			  <label class="form-check-label mt-1" for="check1">
-				본체
-			  </label>
-			  <input type="text" class="form-control form-control-inline ms-4" placeholder="본체 일련번호" id="box1" disabled>
+	  <form action = "d_add.do" method = "post" enctype="multipart/form-data">
+		<div class="col-12 fw-bold">
+			<div class="form-group">
+			<label>모델명</label>
+			<select id="myselection" class="form-control" required>
+				<option value="Zero" disabled selected>모델 선택</option>
+				<c:forEach items= "${snList}" var="dto">
+					<option value="${dto.cdNum}">${dto.name}</option>
+				</c:forEach>
+			</select>
 			</div>
-		  </div>
-		</div>
-		<div class ="row my-2">
-		  <div class = "col-12">
-			<div class="form-check mt-1">
-			  <input class="form-check-input mt-2" type="checkbox" value="" id="check2" disabled>
-			  <label class="form-check-label mt-1" for="check2">
-				왼쪽
-			  </label>
-			  <input type="text" class="form-control form-control-inline ms-4" placeholder="왼쪽 일련번호" id="box2" disabled>
+			<div class ="row my-2">
+			<div class = "col-12">
+				<div class="form-check mt-1">
+				<input class="form-check-input mt-2" type="checkbox" value="" id="check1" disabled>
+				<label class="form-check-label mt-1" for="check1">
+					본체
+				</label>
+				<input type="text" name="bodySN" class="form-control form-control-inline ms-4" placeholder="본체 일련번호" id="box1" disabled>
+				</div>
 			</div>
-		  </div>
-		</div>
-		<div class ="row my-2">
-		  <div class = "col-12">
-			<div class="form-check mt-1">
-			  <input class="form-check-input mt-2" type="checkbox" value="" id="check3" disabled>
-			  <label class="form-check-label mt-1" for="check3">
-				오른쪽
-			  </label>
-			  <input type="text" class="form-control form-control-inline ms-2" placeholder="오른쪽 일련번호" id="box3" disabled>
 			</div>
-		  </div>
-		</div>
-		<div class ="row my-2">
-		  <div class = "col-12 text-center">
-			<div class="d-grid gap-2 col-6 mx-auto mt-2">
-			  <button class="btn btn-dark" type="button">등록</button>
+			<div class ="row my-2">
+			<div class = "col-12">
+				<div class="form-check mt-1">
+				<input class="form-check-input mt-2" type="checkbox" value="" id="check2" disabled>
+				<label class="form-check-label mt-1" for="check2">
+					왼쪽
+				</label>
+				<input type="text" cname="leftSN" class="form-control form-control-inline ms-4" placeholder="왼쪽 일련번호" id="box2" disabled>
+				</div>
 			</div>
-		  </div>
+			</div>
+			<div class ="row my-2">
+			<div class = "col-12">
+				<div class="form-check mt-1">
+				<input class="form-check-input mt-2" type="checkbox" value="" id="check3" disabled>
+				<label class="form-check-label mt-1" for="check3">
+					오른쪽
+				</label>
+				<input type="text" name="rightSN" class="form-control form-control-inline ms-2" placeholder="오른쪽 일련번호" id="box3" disabled>
+				</div>
+			</div>
+			</div>
+			<div class ="row my-2">
+			<div class = "col-12 text-center">
+				<div class="d-grid gap-2 col-6 mx-auto mt-2">
+				<button class="btn btn-dark" type="submit">등록</button>
+				<button class="btn btn-dark" type="button">취소</button>
+				</div>
+			</div>
+			</div>
 		</div>
-	  </div>
+	  </form>
 	</div>
   </div>
 </div>
