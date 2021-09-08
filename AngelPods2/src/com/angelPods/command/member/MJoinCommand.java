@@ -21,7 +21,7 @@ public class MJoinCommand implements Command {
 		dto.seteMail(request.getParameter("eMail"));
 		dto.setAddr(request.getParameter("addr"));
 		dto.setLat(request.getParameter("lat"));
-		dto.setLon(request.getParameter("lon"));
+		dto.setLng(request.getParameter("lng"));
 		
 		int ri = 0;
 		if(dao.confirmUserId(dto.getUserId()) == 1){

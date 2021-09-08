@@ -102,8 +102,8 @@
                     </div> -->
                     <c:forEach items="${lImages}" var = "lImages" varStatus="status">
                       <div ${status.first ? 'class="carousel-item active"' : 'class="carousel-item"'} >
-						<a class="image-box" href="${pageContext.request.contextPath}/limages/${lImages.imageSystemName}">
-						  <img class="fit-cover" src="${pageContext.request.contextPath}/limages/${lImages.imageSystemName}">
+						<a class="image-box" href="${pageContext.request.contextPath}/images/lostBoard/${lImages.imageSystemName}">
+						  <img class="fit-cover" src="${pageContext.request.contextPath}/images/lostBoard/${lImages.imageSystemName}">
 						</a>
                       </div>
                     </c:forEach>

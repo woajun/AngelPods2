@@ -1,5 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+	int ri= Integer.parseInt(request.getAttribute("ri").toString()); 
+	
+	if(ri == 1) {
+%>
+	<script language = "javascript">
+		alert("삭제되었습니다.");
+  		document.location.href="../mypage/main.jsp";
+	</script>
+	
+<% } else if(ri == -1){ %>
+
+   	<script language = "javascript">
+   		alert("기기 삭제를 실패했습니다.");
+  		document.location.href="../mypage/main.jsp";
+   	</script>
+    	
+<% } %>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>

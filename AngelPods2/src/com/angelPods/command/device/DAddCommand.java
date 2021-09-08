@@ -24,7 +24,7 @@ public class DAddCommand implements Command{
 
 		MultipartRequest mRequest = null;
 		try {
-			String directory = session.getServletContext().getRealPath("/devimgs/");
+			String directory = session.getServletContext().getRealPath("/images/device/");
 			int maxSize = 1024 * 1024 * 100;
 			String encoding = "UTF-8";
 			mRequest = new MultipartRequest(request, directory, maxSize, encoding, new DefaultFileRenamePolicy());

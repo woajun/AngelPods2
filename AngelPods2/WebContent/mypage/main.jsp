@@ -16,13 +16,18 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     
   <style>
-    #myDevices .dev-img{display: block; height: 180px; width:300px; margin-left: auto; margin-right: auto;}
-    #myDevices .dev-info{position: relative;padding-bottom: 40px;padding-top: 10px;}
-    #myDevices .dev-info .dev-control{position: absolute; bottom:0; right:0;}
-    #myDevices #dev-plus{position:relative; height: 100%;min-height: 198px;}
     #userBox .row{--bs-gutter-x:0;}
     #userBox #userInfo td{padding-left: 13px;}
+    
+    #myDevices .row{--bs-gutter-x:0;}
+    #myDevices .dev-img{display: block; height: 150px; width:200px; margin-left: auto; margin-right: auto;}
+    #myDevices .dev-info{position: relative;padding-bottom: 40px;padding-top: 10px;}
+    #myDevices .dev-info th{width:72px;}
+    #myDevices .dev-info .dev-control{position: absolute; bottom:0; right:0;}
+    #myDevices #dev-plus{position:relative; height: 100%;min-height: 198px;}
+    
     @media (min-width: 992px) {
+	    #myDevices .dev-info{padding-top: 0px;}
         #userBox #userInfo{margin-right: 15px;}
     }
 
@@ -74,13 +79,13 @@
       <div class="row">
         <div class="col-12 col-lg-6 mb-2">
             <div id="userInfo" class="row border rounded shadow-sm py-3 px-3">
-                <div class="col-12 col-sm-6 text-center ">
+                <div class="col-12 col-sm-4 text-center ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
                         <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
                         <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"/>
                     </svg>
                 </div>
-                <div class="col-12 col-sm-6">
+                <div class="col-12 col-sm-8">
                     <table>
                     <tbody>
                         <tr>
@@ -120,19 +125,19 @@
   </div>
 
   <div id="myDevices" class = "container">
-    <h3 class="fs-5 mt-4"><strong>나의 기기</strong> 목록</h3>
+    <h3 class="fs-5 mt-4"><strong>나의 기기 목록</strong> </h3>
       
-    <div class="row">
+    <div class="row gap-3">
       <!-- 기기추가 -->
       <c:forEach items = "${devList}" var="dto">
-        <div class="col-12 col-sm-12 col-lg-4">
-            <div class = "col-12 border rounded row mx-1 mt-2 shadow-sm">
+        <div class="dev-box col-12 col-sm-12 col-lg-4">
+            <div class = "col-12 border rounded row me-2 shadow-sm">
     
               <div class = "col-12 col-sm-6 col-lg-12 py-2 d-grid">
-                <img src="${dto.thumbnail}" class="dev-img rounded float-start img-fluid border" alt="기기 이미지">
+                <img src="${pageContext.request.contextPath}/images/device/${dto.thumbnail}" class="dev-img rounded float-start img-fluid border" alt="기기 이미지">
               </div>
     
-              <div class = "dev-info col-12 col-sm-6 col-lg-12 ">
+              <div class = "dev-info col-12 col-sm-6 col-lg-12 px-3">
                 <table>
                       <tbody>
                           <tr>
@@ -150,48 +155,18 @@
                       </tbody>
                 </table>
                 <div class="dev-control text-end mb-2 me-2">
-                    <a href="#" class="py-0 btn btn-outline-dark">분실물 등록</a>
+                    <a href="#" class="py-0 btn btn-outline-dark">분실신고</a>
                     <a href="#" class="py-0 btn btn-outline-dark">수정</a>
-                    <a href="#" class="py-0 btn btn-outline-dark">삭제</a>
+                    <a href="d_delete.do?devNum=${dto.devNum}" class="py-0 btn btn-outline-dark">삭제</a>
                 </div>
               </div>
             </div>
-          </div>
-      </c:forEach>
-      <div class="col-12 col-sm-12 col-lg-4">
-        <div class = "col-12 border rounded row mx-1 mt-2 shadow-sm">
-
-          <div class = "col-12 col-sm-6 col-lg-12 py-2 d-grid">
-            <img src="${dto.thumbnail}" class="dev-img rounded float-start img-fluid border" alt="기기 이미지">
-          </div>
-
-          <div class = "dev-info col-12 col-sm-6 col-lg-12 ">
-            <table>
-                  <tbody>
-                      <tr>
-                          <th>기종</th>
-                          <td>${dto.devNum}</td>
-                        </tr>
-                        <tr>
-                            <th>일련번호</th>
-                            <td>${dto.sn}</td>
-                        </tr>
-                        <tr>
-                            <th>등록일</th>
-                            <td>${dto.timestamp}</td>
-                        </tr>
-                  </tbody>
-            </table>
-            <div class="dev-control text-end mb-2 me-2">
-                <a href="#" class="py-0 btn btn-outline-dark">분실물 등록</a>
-                <a href="#" class="py-0 btn btn-outline-dark">수정</a>
-                <a href="#" class="py-0 btn btn-outline-dark">삭제</a>
-            </div>
-          </div>
         </div>
-      </div>
-      <div class="col-12 col-sm-12 col-lg-4">
-        <div id="dev-plus" class = "col-12 rounded row mx-1 mt-2 shadow-sm d-grid">
+      </c:forEach>
+      
+      
+      <div id="dev-plus-box" class="col-12 col-sm-12 col-lg">
+        <div id="dev-plus" class = "col-12 rounded row me-2 shadow-sm d-grid">
             <a href="d_add_view.do" class="btn btn-outline-secondary border d-grid">
                 <div class="position-absolute top-50 start-50 translate-middle">
                     <h2>기기등록</h2>
@@ -199,21 +174,32 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                      </svg>
+                    </svg>
                 </div>
             </a>
         </div>
-      </div>
-      <div class="col-12 col-sm-12 col-lg-4">
-        <div id="dev-plus" class = "col-12 rounded row mx-1 mt-2 shadow-sm d-grid">
-            <div class="btn border d-grid">
-            </div>
-        </div>
+        
+        
       </div>
     </div>
   </div>
 
 <script>
+let devBox = document.getElementsByClassName('dev-box');
+const plusBox = document.getElementById('dev-plus-box');
+
+plusBoxHide();
+
+function plusBoxHide(){
+  if(devBox.length >= 3){
+    plusBox.remove();
+    for (let i = 0; i < devBox.length; i++) {
+      const element = devBox[i];
+      element.classList.replace('col-lg-4','col-lg')
+    }
+  }
+}
+
 //============================
 const ValidMem = document.getElementById('validMem').value;
 const navLogin = document.getElementById('nav-login');

@@ -27,7 +27,7 @@ public class FWriteActionCommand implements Command {
 		//multipartRequest 생성자
 		MultipartRequest mRequest = null;
 		try {
-			String directory = request.getSession().getServletContext().getRealPath("/images/");
+			String directory = request.getSession().getServletContext().getRealPath("/images/findBoard/");
 			int maxSize = 1024 * 1024 * 100;
 			String encoding = "UTF-8";
 			mRequest = new MultipartRequest(request, directory, maxSize, encoding, new DefaultFileRenamePolicy());

@@ -268,7 +268,7 @@ if(request.getAttribute("Valid-list") == null){ %>
                   <div class="boardItem list-group-item list-group-item-action py-1 mb-1">
                     <div class="row">
                       <div class="col-3 align-items-center d-flex px-1">
-                        <img  class="rounded"  src="${pageContext.request.contextPath}/images/${dto.thumbnailImage}" alt="..." width=80px height=80px>
+                        <img  class="rounded"  src="${pageContext.request.contextPath}/images/lostBoard/${dto.thumbnailImage}" alt="..." width=80px height=80px>
                       </div>
                       <div class="col-9 ps-2">
                           <div class="d-flex align-items-center justify-content-between">
@@ -289,7 +289,7 @@ if(request.getAttribute("Valid-list") == null){ %>
                     </div>
                     <input type="hidden" class = "lbNum" value="${dto.lbNum}">
                     <input type="hidden" class = "userId" value="${dto.userId}">
-                    <input type="hidden" class = "thumbnailImage" value="${pageContext.request.contextPath}/limages/${dto.thumbnailImage}">
+                    <input type="hidden" class = "thumbnailImage" value="${pageContext.request.contextPath}/images/lostBoard/${dto.thumbnailImage}">
                     <input type="hidden" class = "timestamp" value="${dto.timestamp}">
                     <input type="hidden" class = "sido" value="${dto.sido}">
                     <input type="hidden" class = "gue" value="${dto.gue}">

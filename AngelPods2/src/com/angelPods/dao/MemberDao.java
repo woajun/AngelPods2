@@ -162,7 +162,7 @@ public class MemberDao {
 		Connection connection = null;
 		PreparedStatement pstmt = null;
 		String query = "insert into member "
-				+ "(userId, pw, name, email, addr, lat, lng, profilImage) values (?,?,?,?,?,?,?,?)";
+				+ "(userId, pw, name, email, addr, lat, lng) values (?,?,?,?,?,?,?)";
 		
 		try {
 			connection = getConnection();
@@ -174,7 +174,6 @@ public class MemberDao {
 			pstmt.setString(5, dto.getAddr());
 			pstmt.setString(6, dto.getLat());
 			pstmt.setString(7, dto.getLng());
-			pstmt.setString(8, dto.getProfilImage());
 			pstmt.executeUpdate();
 			ri = 1;
 		} catch (Exception e) {
@@ -214,7 +213,6 @@ public class MemberDao {
 				dto.setRankId(rs.getInt("rankid"));
 				dto.setLat(rs.getString("lat"));
 				dto.setLng(rs.getString("lng"));
-				dto.setProfilImage(rs.getString("profilImage"));
 				dtos.add(dto);
 			}
 		
@@ -257,7 +255,6 @@ public class MemberDao {
 				dto.setRankId(rs.getInt("rankid"));
 				dto.setLat(rs.getString("lat"));
 				dto.setLng(rs.getString("lng"));
-				dto.setProfilImage(rs.getString("profilImage"));
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -275,7 +272,7 @@ public class MemberDao {
 	}
 
 	public int modify(String userId, String pw, String name, String eMail, String addr, 
-			String lat, String lng, String profilImage) {
+			String lat, String lng) {
 		// TODO Auto-generated method stub
 
 		int ri = 0;
@@ -285,7 +282,7 @@ public class MemberDao {
 		try {
 			con = getConnection();
 			
-			String query = "update member set pw = ?, name = ?, eMail = ?, addr = ?, lat = ?, lng = ?, profilImage = ? where userId = ?";
+			String query = "update member set pw = ?, name = ?, eMail = ?, addr = ?, lat = ?, lng = ? where userId = ?";
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, pw);
 			pstmt.setString(2, name);
@@ -293,8 +290,7 @@ public class MemberDao {
 			pstmt.setString(4, addr);
 			pstmt.setString(5, lat);
 			pstmt.setString(6, lng);
-			pstmt.setString(7, profilImage);
-			pstmt.setString(8, userId);
+			pstmt.setString(7, userId);
 			ri = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
