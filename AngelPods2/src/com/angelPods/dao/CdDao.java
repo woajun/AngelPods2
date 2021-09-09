@@ -67,6 +67,45 @@ public class CdDao {
 		}
 		return dtos;
 	}
+	
+	public ArrayList<CdDto> list(int cNum) {
+		ArrayList<CdDto> dtos = new ArrayList <CdDto>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dataSource.getConnection();
+			String query = "select "
+					+ "cd_num, c_num, name, need_sn from CATEGORY_DETAIL where c_num = ? order by cd_num asc";
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, cNum);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				int cdNum = rs.getInt("cd_num");
+//				int cNum = rs.getInt("c_num");
+				String name= rs.getString("name");
+				String needSn= rs.getString("need_sn");
+				
+				CdDto dto = new CdDto(cdNum, cNum, name, needSn);
+				dtos.add(dto);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		}
+		return dtos;
+	}
 
 	public ArrayList<CdDto> snList() {
 		// TODO Auto-generated method stub

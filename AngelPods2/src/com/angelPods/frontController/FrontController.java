@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.angelPods.command.Command;
+import com.angelPods.command.admin.ACategoryViewCommand;
 import com.angelPods.command.device.DAddCommand;
 import com.angelPods.command.device.DAddViewCommand;
 import com.angelPods.command.device.DDeleteCommand;
@@ -211,6 +212,19 @@ public class FrontController extends HttpServlet {
 			command = new MyContentsViewCommand();
 			command.execute(request, response);
 			viewPage = "/mypage/contents.jsp";
+		}
+		
+//------------------admin---------------------
+		
+		if (com.equals("a_category_view.do")) {
+			command = new ACategoryViewCommand();
+			command.execute(request, response);
+			viewPage = "/admin/category.jsp";
+			
+		} else if (com.equals("#")) {
+//			command = new MyContentsViewCommand();
+//			command.execute(request, response);
+//			viewPage = "/mypage/contents.jsp";
 		}
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
