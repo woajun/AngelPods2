@@ -39,7 +39,7 @@ public class CdDao {
 		try {
 			con = dataSource.getConnection();
 			String query = "select "
-					+ "cd_num, c_num, name, need_sn from CATEGORY_DETAIL order by cd_num asc";
+					+ "cd_num, c_num, name, need_sn, idx from CATEGORY_DETAIL order by idx asc";
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
 			
@@ -48,8 +48,9 @@ public class CdDao {
 				int cNum = rs.getInt("c_num");
 				String name= rs.getString("name");
 				String needSn= rs.getString("need_sn");
+				int idx = rs.getInt("idx");
 				
-				CdDto dto = new CdDto(cdNum, cNum, name, needSn);
+				CdDto dto = new CdDto(cdNum, cNum, name, needSn, idx);
 				dtos.add(dto);
 			}
 		} catch (Exception e) {
@@ -77,7 +78,7 @@ public class CdDao {
 		try {
 			con = dataSource.getConnection();
 			String query = "select "
-					+ "cd_num, c_num, name, need_sn from CATEGORY_DETAIL where c_num = ? order by cd_num asc";
+					+ "cd_num, c_num, name, need_sn, idx from CATEGORY_DETAIL where c_num = ? order by idx asc";
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, cNum);
 			rs = pstmt.executeQuery();
@@ -87,8 +88,9 @@ public class CdDao {
 //				int cNum = rs.getInt("c_num");
 				String name= rs.getString("name");
 				String needSn= rs.getString("need_sn");
+				int idx = rs.getInt("idx");
 				
-				CdDto dto = new CdDto(cdNum, cNum, name, needSn);
+				CdDto dto = new CdDto(cdNum, cNum, name, needSn, idx);
 				dtos.add(dto);
 			}
 		} catch (Exception e) {
@@ -117,7 +119,7 @@ public class CdDao {
 		try {
 			con = dataSource.getConnection();
 			String query = "select "
-					+ "cd_num, c_num, name, need_sn from CATEGORY_DETAIL where NEED_SN like 'y' order by cd_num asc";
+					+ "cd_num, c_num, name, need_sn, idx from CATEGORY_DETAIL where NEED_SN like 'y' order by idx asc";
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
 			
@@ -126,8 +128,9 @@ public class CdDao {
 				int cNum = rs.getInt("c_num");
 				String name= rs.getString("name");
 				String needSn= rs.getString("need_sn");
+				int idx = rs.getInt("idx");
 				
-				CdDto dto = new CdDto(cdNum, cNum, name, needSn);
+				CdDto dto = new CdDto(cdNum, cNum, name, needSn, idx);
 				dtos.add(dto);
 			}
 		} catch (Exception e) {

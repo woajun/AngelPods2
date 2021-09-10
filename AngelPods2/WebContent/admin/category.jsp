@@ -20,8 +20,17 @@
 
 <style>
 
-.accordion-button {padding: 3px 10px;}
-.accordion-body {padding: 3px 20px;}
+.accordion-button {
+    padding: 0px 0px;
+    width: 16px;
+    display: inline-flex;
+    position: relative;
+    margin-right: 6px;
+}
+.accordion-body {padding: 3px 10px;}
+.accordion-button:not(.collapsed)::after {background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23212529'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");transform: rotate(-180deg);}
+.accordion-button:not(.collapsed) {color: black;    background-color: white;    box-shadow: 0 0 0 0;}
+.accordion-item input{ border:0;}
 </style>
 </head>
 <body>
@@ -42,16 +51,26 @@
         <div class="col-6 col-md-6 col-lg-3 pe-0">
 			<div class="accordion">
 			  <c:forEach items = "${cList}" var="cDto" varStatus="status">
-				  <div class="accordion-item">
-				    <h2 class="accordion-header" >
-				      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse${status.index}" aria-expanded="true">
-				      	<div id="cNum-${cDto.cNum}" value="${cDto.cNum}">${cDto.name}</div>
-				      </button>
-				    </h2>
+				  <div id="ctgItem-${cDto.cNum}" class="accordion-item">
+				      <div class="accordion-body">
+				      	<div value="${cDto.cNum}" onclick="selectCtg(${cDto.cNum})">
+				      	    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse${status.index}" aria-expanded="true"></button>
+                            <input type="text" id="cName-${cDto.cNum}" value="${cDto.name}" readonly>
+                            <input type="hidden" id="cNum-${cDto.cNum}" value="${cDto.cNum}">
+                            <input type="hidden" id="cIdx-${cDto.cNum}" value="${cDto.idx}">
+				      	</div>
+				      </div>
 				    <c:forEach items = "${cDto.cdList}" var="cdDto">
-					    <div id="panelsStayOpen-collapse${status.index}" class="accordion-collapse collapse show" >
+					    <div id="panelsStayOpen-collapse${status.index}" class="sub-ctg-name accordion-collapse collapse show" >
 					      <div class="accordion-body">
-				        	<div value="${cdDto.cdNum}">${cdDto.name}</div>
+				        	<div value="${cdDto.cdNum}" onclick="selectSubCtg(${cdDto.cdNum})">
+                              <span id="subCtgName-${cdDto.cdNum}">${cdDto.name}</span>
+				        	  <input type="hidden" id="cdNum-${cdDto.cdNum}" value="${cdDto.cdNum}">
+				        	  <input type="hidden" id="cdCNum-${cdDto.cdNum}" value="${cdDto.cNum}">
+	                          <input type="hidden" id="cdName-${cdDto.cdNum}" value="${cdDto.name}">
+	                          <input type="hidden" id="cdNeedSN-${cdDto.cdNum}" value="${cdDto.needSN}">
+	                          <input type="hidden" id="cdIdx-${cdDto.cdNum}" value="${cdDto.idx}">
+				        	</div>
 					      </div>
 					    </div>
 					</c:forEach>
@@ -60,14 +79,28 @@
 			</div>
         </div>
         
-        <div class="col-6 col-md-6 col-lg-6 ">
-            <div id="changeBox" class="px-3 border rounded py-3 my-3">
+        <div id="ctgBox" class="col-6 col-md-6 col-lg-6 ">
+            <div class="px-3 border rounded py-3 my-3">
                 <dl>
                     <dt>대분류명</dt>
                     <dd>
-                        <input id="cNameBox" type="text">
+                        <input id="ctgBox-cName" type="text">
                     </dd>
  
+                </dl>
+ 
+                <button onclick="modifyCtg()">수정</button>
+                <button id="ctgBox-delete">삭제</button>
+            </div>
+            <div class="text-end">
+                <button>적용</button>
+                <button>취소</button>
+                
+            </div>
+        </div>
+        <div id="subCtgBox" class="col-6 col-md-6 col-lg-6 ">
+            <div class="px-3 border rounded py-3 my-3">
+                <dl>
                     <dt>소분류명</dt>
                     <dd>
                         <input id="ipt-cdName" type="text">
@@ -98,98 +131,74 @@
     </div>
 </div>
 
-<!--
-<div class="container my-3">
-    <div class="row">
-        <div class="col-6 col-md-4 col-lg-3 pe-0">
-            <select id="cSlt" class="form-select" size="8">
-              <option id="cNum-0" value="0" >무선이어폰</option>
-              <option id="cNum-1" value="1">지갑</option>
-
-              <c:forEach items = "${cList}" var="cDto">
-                <option id="cNum-${cDto.cNum}" value="${cDto.cNum}">${cDto.name}
-                </option>
-			  </c:forEach>
-            </select>
-            <div class="text-end">
-	          <button>+</button>
-	          <button>△</button>
-	          <button>▽</button>
-            </div>
-         </div>
-         <div class="col-6 col-md-4 col-lg-3 ps-0 ">
-             <select id="cdSlt" class="form-select" size="8">
-                 <option value="0">Open this select menu</option>
-                 <option value="1">One</option>
-                 <option value="2">Two</option>
-                 <option value="3">Three</option>
-             </select>
-             <div class="text-end">
-                 <button>+</button>
-                 <button>△</button>
-                 <button>▽</button>
-             </div>
-         </div>
- -->
-         <div class="col-12 col-md-4 col-lg-6 ">
-            <div id="changeBox" class="px-3 border rounded py-3 my-3">
-                <dl>
-                    <dt>대분류명</dt>
-                    <dd>
-                        <input id="cNameBox" type="text">
-                    </dd>
-<!-- 
-                    <dt>소분류명</dt>
-                    <dd>
-                        <input id="ipt-cdName" type="text">
-                    </dd>
-                    
-                    <dt>일련번호</dt>
-                    <dd >
-                        <input type="radio" name="needSn" id="pub_c1"><label for="pub_c1">사용</label>
-                        <input type="radio" name="needSn" id="pub_c2" checked><label for="pub_c2" >미사용</label>
-                    </dd>
-
-                    <dt>기본 이미지</dt>
-                    <dd>
-                        <input type="file">
-                    </dd>
-                </dl>
- -->
-                <button onclick="cSltChange()">수정</button>
-                <button>삭제</button>
-            </div>
-            <div class="text-end">
-                <button>적용</button>
-                <button>취소</button>
-                
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-const cSlt = document.getElementById('cSlt');
-const cNameBox = document.getElementById('cNameBox');
-let cName;
 
-cSlt.addEventListener('change',function(){cSltView(this)});
+const ctgBox = document.getElementById('ctgBox');
+const ctgBoxCName = document.getElementById("ctgBox-cName");
+const ctgBoxModBtn = document.getElementById('ctgBox-modify');
+const ctgBoxdelBtn = document.getElementById('ctgBox-delete');
 
-function cSltView(item){
-    cName = document.getElementById('cNum-'+item.value).innerHTML;
-    cNameBox.value=cName;
+const subCtgBox = document.getElementById('subCtgBox');
+
+let sltItem;
+let sltNum;
+let sltName;
+let sltIdx;
+
+function selectCtg(cNum){
+    if(!subCtgBox.hasAttribute('hidden')){
+        subCtgBox.setAttribute('hidden','true');
+    }
+    if(ctgBox.hasAttribute('hidden')){
+        ctgBox.removeAttribute('hidden')
+    }
+
+    sltItem = document.getElementById('ctgItem-'+cNum);
+    sltNum = document.getElementById('cNum-'+cNum);   
+    sltName = document.getElementById('cName-'+cNum);   
+    sltIdx = document.getElementById('cIdx-'+cNum);
+
+    ctgBoxCName.value = sltName.value;
 }
 
-function cSltChange(){
-    cName = document.getElementById('cNum-'+cSlt.value);
-    cName.innerHTML = cNameBox.value;
+function modifyCtg(){
+    sltName.value = ctgBoxCName.value;
 }
 
+function deleteCtg(){
+ 
+}
 
-//ajax로 cd값 가져오기
+let sltCdItem;
+let sltCdNum;
+let sltCNum;
+let sltCdName;
+let sltCdNSN;
+let sltCdIdx;
+
+
+function selectSubCtg(cdNum){
+    if(!ctgBox.hasAttribute('hidden')){
+        ctgBox.setAttribute('hidden','true')
+    }
+    if(subCtgBox.hasAttribute('hidden')){
+        subCtgBox.removeAttribute('hidden');
+    }
+
+    sltItem = document.getElementById('ctgItem-'+cdNum);
+    sltNum = document.getElementById('cdNum-'+cdNum);   
+    sltName = document.getElementById('cdName-'+cdNum);   
+    sltIdx = document.getElementById('cdIdx-'+cdNum);
+
+
+
+
+    ctgBoxCName.value = sltName.value;
+}
+
 </script>
 </body>
 </html>

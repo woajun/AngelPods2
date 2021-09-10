@@ -39,15 +39,16 @@ public class CDao {
 		try {
 			con = dataSource.getConnection();
 			String query = "select "
-					+ "c_num, name from CATEGORY order by ORDERNUM asc";
+					+ "c_num, name, idx from CATEGORY order by idx asc";
 			ps = con.prepareStatement(query);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
 				int cNum = rs.getInt("c_num");
 				String name= rs.getString("name");
+				int idx= rs.getInt("idx");
 				
-				CDto dto = new CDto(cNum, name);
+				CDto dto = new CDto(cNum, name, idx, null);
 				dtos.add(dto);
 			}
 		} catch (Exception e) {
