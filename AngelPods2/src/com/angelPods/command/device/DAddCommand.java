@@ -34,9 +34,12 @@ public class DAddCommand implements Command{
 		}
 		
 		int cdNum = Integer.parseInt(mRequest.getParameter("cdNum"));
-		String sn = mRequest.getParameter("sn");
+		String bodySN = mRequest.getParameter("bodySN");
+		String leftSN = mRequest.getParameter("leftSN");
+		String rightSN = mRequest.getParameter("rightSN");
+		
 
-		int devNum = devDao.add(userId, cdNum, sn);
+		int devNum = devDao.add(userId, cdNum, bodySN, leftSN, rightSN);
 		
 		for (int i = 1; i <= 5; i ++) {
 			String image = "image" +i;

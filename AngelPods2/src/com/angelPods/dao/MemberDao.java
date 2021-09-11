@@ -271,10 +271,17 @@ public class MemberDao {
 		return dto;
 	}
 
-	public int modify(String userId, String pw, String name, String eMail, String addr, 
-			String lat, String lng) {
+//	public int modify(String userId, String pw, String name, String eMail, String addr, String lat, String lng) {
+	public int modify(MemberDto mDto) {
 		// TODO Auto-generated method stub
-
+		String userId = mDto.getUserId();
+		String pw = mDto.getPw();
+		String name = mDto.getName();
+		String eMail = mDto.geteMail();
+		String addr = mDto.getAddr();
+		String lat = mDto.getLat();
+		String lng = mDto.getLng();
+		
 		int ri = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;

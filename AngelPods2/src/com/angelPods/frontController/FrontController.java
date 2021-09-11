@@ -37,6 +37,8 @@ import com.angelPods.command.member.MPrintAll;
 import com.angelPods.command.member.MWithdrawCommand;
 import com.angelPods.command.mypage.MyContentsViewCommand;
 import com.angelPods.command.mypage.MyMainViewCommand;
+import com.angelPods.command.mypage.MyModifyCommand;
+import com.angelPods.command.mypage.MyModifyViewCommand;
 
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -199,6 +201,7 @@ public class FrontController extends HttpServlet {
 			command = new DDeleteCommand();
 			command.execute(request, response);
 			viewPage = "/device/delete_action.jsp";
+			
 		}
 
 //------------------mypage---------------------
@@ -212,6 +215,16 @@ public class FrontController extends HttpServlet {
 			command = new MyContentsViewCommand();
 			command.execute(request, response);
 			viewPage = "/mypage/contents.jsp";
+
+		} else if (com.equals("my_modify_view.do")) {
+			command = new MyModifyViewCommand();
+			command.execute(request, response);
+			viewPage = "/mypage/modify_view.jsp";
+
+		} else if (com.equals("my_modify.do")) {
+			command = new MyModifyCommand();
+			command.execute(request, response);
+			viewPage = "/mypage/modify_action.jsp";
 		}
 		
 //------------------admin---------------------

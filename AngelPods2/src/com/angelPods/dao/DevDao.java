@@ -31,7 +31,7 @@ public class DevDao {
 		return instance;
 	}
 
-	public int add(String userId, int cdNum, String sn) {
+	public int add(String userId, int cdNum, String bodySN, String leftSN, String rightSN) {
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -60,14 +60,16 @@ public class DevDao {
 		
 		try {
 			String query = "insert into DEVICE "
-					+ "(DevNum, userid, cd_num, sn) "
-					+ "values (?,?,?,?)";
+					+ "(DevNum, userid, cd_num, bodySN, leftSN, rightSN) "
+					+ "values (?,?,?,?,?,?)";
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(query);
 			pstmt.setInt(1, devNum);
 			pstmt.setString(2, userId);
 			pstmt.setInt(3, cdNum);
-			pstmt.setString(4, sn);
+			pstmt.setString(4, bodySN);
+			pstmt.setString(5, leftSN);
+			pstmt.setString(6, rightSN);
 			pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -91,7 +93,7 @@ public class DevDao {
 		ResultSet rs = null;
 		
 		try {
-			String query ="select D.DevNum, D.userid, D.cd_num, D.sn, D.timestamp, I.imagesystemname thumbnail "
+			String query ="select D.DevNum, D.userid, D.cd_num, D.bodySN, D.leftSN, D.rightSN , D.timestamp, I.imagesystemname thumbnail "
 					+ "from DEVICE D "
 					+ "	left outer join DEVIMG I on D.devnum = I.devnum and I.idx = 1 "
 					+ "where USERID like ? "
@@ -105,10 +107,12 @@ public class DevDao {
 				int devNum = rs.getInt("devnum");
 //				String userId = rs.getString("userId");
 				int cdNum = rs.getInt("cd_Num");
-				String sn = rs.getString("sn");
+				String bodySN = rs.getString("bodySN");
+				String leftSN = rs.getString("leftSN");
+				String rightSN = rs.getString("rightSN");
 				Timestamp timestamp = rs.getTimestamp("timestamp");
 				String thumbnail = rs.getString("thumbnail");
-				DevDto dto = new DevDto(devNum, userId, cdNum, sn, timestamp, thumbnail);
+				DevDto dto = new DevDto(devNum, userId, cdNum, bodySN, timestamp, thumbnail, leftSN, rightSN);
 				dtos.add(dto);
 			}
 			
@@ -143,9 +147,9 @@ public class DevDao {
 //				int devNum = rs.getInt("devnum");
 				String userId = rs.getString("userId");
 				int cdNum = rs.getInt("cdNum");
-				String sn = rs.getString("sn");
+				String bodySN = rs.getString("bodySN");
 				Timestamp timestamp = rs.getTimestamp("timestamp");
-				dto = new DevDto(devNum, userId, cdNum, sn, timestamp);
+				dto = new DevDto(devNum, userId, cdNum, bodySN, timestamp);
 			}
 			
 		} catch (Exception e) {

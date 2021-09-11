@@ -80,45 +80,46 @@
 </head>
 
 <body>
+
+
 <!-- nav -->
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top px-3" >
-	<a class="navbar-brand" href="../index.html">Angel Pods</a>
-	<div>
-	  <button class="navbar-toggler collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
-	  
-		<span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top px-3" >
+<a class="navbar-brand" href="../index.jsp">Angel Pods</a>
+<div>
+<button class="navbar-toggler collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
 
-	  </button>
-	  <button type="button btn-list-map" class=" navbar-toggler" id="sidebarToggle">
-		<svg xmlns="http://www.w3.org/2000/svg" width="28" height="30" fill="currentColor" class="bi bi-map-fill" viewBox="0 0 16 16">
-		  <path fill-rule="evenodd" d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.502.502 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5V.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.498.498 0 0 0-.196 0L5 14.09zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1-.5-.1z"></path>
-		</svg>
-	  </button>
-	</div>
-	
-	<div class="navbar-collapse collapse" id="navbarsExample03">
-		<ul class="navbar-nav me-auto mb-2 mb-sm-0">
-		  <li class="nav-item">
-			<a class="nav-link text-white" href="../regist/regist.new.html">기기등록</a>
-		  </li>
-		  <li class="nav-item">
-			<a class="nav-link text-white" href="../find/find.list.html">게시글보기</a>
-		  </li>
-		  <li class="nav-item">
-			<a class="nav-link text-white" href="../member/member.mypage.html">분실신고</a>
-		  </li>
-		  <li class="nav-item">
-			<a class="nav-link text-white" href="../find/find.write.html">습득신고</a>
-		  </li>
-		</ul>
-		<form>
-		  <a type="button" class="btn btn-light me-2 text-secondary fw-bold  " href = "../member/member.login.html">로그인</a>
-		  <a type="button" class="btn btn-outline-light text-white " href = "../member/member.signup.html">회원가입</a>
-		</form>
-	</div>
-  </nav>
-<div style="padding-top: 60px;"></div>
+  <span class="navbar-toggler-icon"></span>
 
+</button>
+</div>
+
+<div class="navbar-collapse collapse" id="navbarsExample03">
+  <ul class="navbar-nav me-auto mb-2 mb-sm-0">
+    <li class="nav-item">
+      <a class="nav-link text-white" href="../find/list_view.jsp">습득물보기</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="#">분실물보기</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="f_write_view.do">습득신고</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" href="#">분실신고</a>
+    </li>
+  </ul>
+  <div id ="nav-login" hidden="true">  
+    <a type="button" class="btn btn-light me-2 text-secondary fw-bold  " href = "../member/login.jsp?url=${pageContext.request.requestURL}">로그인</a>
+    <a type="button" class="btn btn-outline-light text-white " href = "../member/join.jsp">회원가입</a>
+  </div>
+  <div id ="nav-logout" hidden="true" class="text-white">
+    <a href="#" class="text-white">${name}</a> 님
+    <a type="button" class="btn btn-outline-light" href = "logout.do">로그아웃</a>
+  </div>
+  <input id="validMem" value="${ValidMem}" hidden="true">
+</div>
+</nav>
+<div style="padding-top: 50px;"></div>
 
 
 <!-- 기기등록 -->
@@ -151,8 +152,8 @@
 		<div class="col-12 fw-bold">
 			<div class="form-group">
 			<label>모델명</label>
-			<select id="myselection" class="form-control" required>
-				<option value="Zero" disabled selected>모델 선택</option>
+			<select name="cdNum" id="myselection" class="form-control" required >
+				<option value="" disabled selected>모델 선택</option>
 				<c:forEach items= "${snList}" var="dto">
 					<option value="${dto.cdNum}">${dto.name}</option>
 				</c:forEach>
@@ -165,7 +166,7 @@
 				<label class="form-check-label mt-1" for="check1">
 					본체
 				</label>
-				<input type="text" name="bodySN" class="form-control form-control-inline ms-4" placeholder="본체 일련번호" id="box1" disabled>
+				<input type="text" name="bodySN" class="form-control form-control-inline ms-4" placeholder="본체 일련번호" id="box1" disabled required>
 				</div>
 			</div>
 			</div>
@@ -205,49 +206,6 @@
 			</div>
 		</div>
 	  </form>
-	</div>
-  </div>
-</div>
-
-
-<!-- 일련번호 -->
-<div class="container my-3 py-3">
-  <div>
-	<div class="text-center">
-	  <hr>
-	  <h2 class="fs-1">일련번호 확인 방법</h2><br>
-	  <h3 class="text-center fs-3">아이폰</h3>
-	  <p>핸드폰과 무선이어폰이 연결된 경우</p>
-	</div>
-  </div>
-</div>
-<div class="container">
-  <div class="col">
-	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-		<div class="carousel-indicators">
-		<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-		<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-		<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-		</div>
-		<div class="carousel-inner">
-		<div class="carousel-item active">
-			<img src="../../images/슬라이드1.JPG" class="d-block w-100" alt="...">
-		</div>
-		<div class="carousel-item">
-			<img src="../../images/슬라이드2.JPG" class="d-block w-100" alt="...">
-		</div>
-		<div class="carousel-item">
-			<img src="../../images/슬라이드3.JPG" class="d-block w-100" alt="...">
-		</div>
-		</div>
-		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		<span class="visually-hidden">Previous</span>
-		</button>
-		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-		<span class="carousel-control-next-icon" aria-hidden="true"></span>
-		<span class="visually-hidden">Next</span>
-		</button>
 	</div>
   </div>
 </div>

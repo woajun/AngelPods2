@@ -7,27 +7,44 @@ public class DevDto {
 	private int devNum;
 	private String userId;
 	private int cdNum;
-	private String sn;
+	private String bodySN;
 	private Timestamp timestamp;
 	private String thumbnail;
+	private String leftSN;
+	private String rightSN;
 	
-	public DevDto(int devNum, String userId, int cdNum, String sn, Timestamp timestamp) {
+	public DevDto(int devNum, String userId, int cdNum, String bodySN, Timestamp timestamp) {
 		super();
 		this.devNum = devNum;
 		this.userId = userId;
 		this.cdNum = cdNum;
-		this.sn = sn;
+		this.bodySN = bodySN;
 		this.timestamp = timestamp;
 	}
 	
-	public DevDto(int devNum, String userId, int cdNum, String sn, Timestamp timestamp, String thumbnail) {
+	public DevDto(int devNum, String userId, int cdNum, String bodySN, Timestamp timestamp, String thumbnail) {
 		super();
 		this.devNum = devNum;
 		this.userId = userId;
 		this.cdNum = cdNum;
-		this.sn = sn;
+		this.bodySN = bodySN;
 		this.timestamp = timestamp;
 		this.thumbnail = thumbnail;
+	}
+	
+	
+
+	public DevDto(int devNum, String userId, int cdNum, String bodySN, Timestamp timestamp, String thumbnail, String leftSN,
+			String rightSN) {
+		super();
+		this.devNum = devNum;
+		this.userId = userId;
+		this.cdNum = cdNum;
+		this.bodySN = bodySN;
+		this.timestamp = timestamp;
+		this.thumbnail = thumbnail;
+		this.leftSN = leftSN;
+		this.rightSN = rightSN;
 	}
 
 	public int getDevNum() {
@@ -54,12 +71,12 @@ public class DevDto {
 		this.cdNum = cdNum;
 	}
 	
-	public String getSn() {
-		return sn;
+	public String getBodySN() {
+		return bodySN;
 	}
-	
-	public void setSn(String sn) {
-		this.sn = sn;
+
+	public void setBodySN(String bodySN) {
+		this.bodySN = bodySN;
 	}
 
 	public Timestamp getTimestamp() {
@@ -77,5 +94,23 @@ public class DevDto {
 	public void setThumbnail(String thumbnail) {
 		this.thumbnail = thumbnail;
 	}
+
+	public String getLeftSN() {
+		return leftSN;
+	}
+
+	public void setLeftSN(String leftSN) {
+		this.leftSN = leftSN;
+	}
+
+	public String getRightSN() {
+		return rightSN;
+	}
+
+	public void setRightSN(String rightSN) {
+		this.rightSN = rightSN;
+	}
+	
+	
 	
 }

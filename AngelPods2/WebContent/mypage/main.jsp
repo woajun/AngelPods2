@@ -115,7 +115,10 @@
                 <a href="my_contents_view.do" class="btn btn-outline-secondary d-grid shadow-sm border">내가쓴글</a>
             </div>
             <div class="col-12 mb-2">
-                <a href="#" class="btn btn-outline-secondary d-grid shadow-sm border">정보수정</a>
+                <a href="../mypage/modify_view.jsp" class="btn btn-outline-secondary d-grid shadow-sm border">정보수정</a>
+            </div>
+            <div class="col-12 mb-2">
+                <a href="#" class="btn btn-outline-secondary d-grid shadow-sm border">비밀번호 변경</a>
             </div>
             <div class="col-12 mb-2">
                 <a href="#" class="btn btn-outline-secondary d-grid shadow-sm border">회원탈퇴</a>
@@ -146,7 +149,7 @@
                             </tr>
                             <tr>
                                 <th>일련번호</th>
-                                <td>${dto.sn}</td>
+                                <td>${dto.bodySN}</td>
                             </tr>
                             <tr>
                                 <th>등록일</th>
@@ -156,7 +159,6 @@
                 </table>
                 <div class="dev-control text-end mb-2 me-2">
                     <a href="#" class="py-0 btn btn-outline-dark">분실신고</a>
-                    <a href="#" class="py-0 btn btn-outline-dark">수정</a>
                     <a href="d_delete.do?devNum=${dto.devNum}" class="py-0 btn btn-outline-dark">삭제</a>
                 </div>
               </div>
@@ -183,7 +185,17 @@
       </div>
     </div>
   </div>
-
+  
+  
+  
+  
+  
+  
+  
+  
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 let devBox = document.getElementsByClassName('dev-box');
 const plusBox = document.getElementById('dev-plus-box');

@@ -103,7 +103,7 @@
                 <dl>
                     <dt>소분류명</dt>
                     <dd>
-                        <input id="ipt-cdName" type="text">
+                        <input id="subCtgBox-cdName" type="text">
                     </dd>
                     
                     <dt>일련번호</dt>
@@ -118,7 +118,7 @@
                     </dd>
                 </dl>
  
-                <button onclick="cSltChange()">수정</button>
+                <button onclick="modifySubCtg()">수정</button>
                 <button>삭제</button>
             </div>
             <div class="text-end">
@@ -141,7 +141,7 @@ const ctgBoxCName = document.getElementById("ctgBox-cName");
 const ctgBoxModBtn = document.getElementById('ctgBox-modify');
 const ctgBoxdelBtn = document.getElementById('ctgBox-delete');
 
-const subCtgBox = document.getElementById('subCtgBox');
+
 
 let sltItem;
 let sltNum;
@@ -179,24 +179,29 @@ let sltCdName;
 let sltCdNSN;
 let sltCdIdx;
 
+const subCtgBox = document.getElementById('subCtgBox');
+const subCtgBoxCName = document.getElementById("subCtgBox-cName");
+const subCtgBoxCdName = document.getElementById("subCtgBox-cdName");
+const subCtgBoxModBtn = document.getElementById('subCtgBox-modify');
+const subCtgBoxdelBtn = document.getElementById('subCtgBox-delete');
 
 function selectSubCtg(cdNum){
     if(!ctgBox.hasAttribute('hidden')){
         ctgBox.setAttribute('hidden','true')
     }
+
     if(subCtgBox.hasAttribute('hidden')){
         subCtgBox.removeAttribute('hidden');
     }
 
-    sltItem = document.getElementById('ctgItem-'+cdNum);
-    sltNum = document.getElementById('cdNum-'+cdNum);   
-    sltName = document.getElementById('cdName-'+cdNum);   
-    sltIdx = document.getElementById('cdIdx-'+cdNum);
+    /* sltCdItem = document.getElementById('ctgItem-'+cdNum); */
+    sltCdNum = document.getElementById('cdNum-'+cdNum);
+    sltCNum = document.getElementById('cNum-'+cdNum);
+    sltCdName = document.getElementById('cdName-'+cdNum);
+    sltCdNSN = document.getElementById('cdNSN-'+cdNum);
+    sltCdIdx = document.getElementById('cdIdx-'+cdNum);
 
-
-
-
-    ctgBoxCName.value = sltName.value;
+    subCtgBoxCdName.value = sltCdName.value;
 }
 
 </script>
