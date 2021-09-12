@@ -29,6 +29,11 @@
     @media (min-width: 992px) {
 	    #myDevices .dev-info{padding-top: 0px;}
         #userBox #userInfo{margin-right: 15px;}
+        
+   		.py-3 {
+		    padding-top: 1rem!important;
+		    padding-bottom: 3.1rem!important;
+		}
     }
 
   </style>
@@ -80,10 +85,10 @@
         <div class="col-12 col-lg-6 mb-2">
             <div id="userInfo" class="row border rounded shadow-sm py-3 px-3">
                 <div class="col-12 col-sm-4 text-center ">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-person-square" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                        <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z"/>
-                    </svg>
+                
+					<label for="inputImg" class="my-1">
+                  		<img id="userImg" class="rounded" src="${pageContext.request.contextPath}/images/member/${mImg.imageSystemName}" width="100" height="100">
+                	</label>
                 </div>
                 <div class="col-12 col-sm-8">
                     <table>
@@ -118,7 +123,7 @@
                 <a href="../mypage/modify_view.jsp" class="btn btn-outline-secondary d-grid shadow-sm border">정보수정</a>
             </div>
             <div class="col-12 mb-2">
-                <a href="#" class="btn btn-outline-secondary d-grid shadow-sm border">비밀번호 변경</a>
+                <a href="../mypage/modifyPW_view.jsp" class="btn btn-outline-secondary d-grid shadow-sm border">비밀번호 변경</a>
             </div>
             <div class="col-12 mb-2">
                 <a href="#" class="btn btn-outline-secondary d-grid shadow-sm border">회원탈퇴</a>
@@ -134,7 +139,7 @@
       <!-- 기기추가 -->
       <c:forEach items = "${devList}" var="dto">
         <div class="dev-box col-12 col-sm-12 col-lg-4">
-            <div class = "col-12 border rounded row me-2 shadow-sm">
+            <div class = "col-12 border rounded row me-2 shadow-sm py-2">
     
               <div class = "col-12 col-sm-6 col-lg-12 py-2 d-grid">
                 <img src="${pageContext.request.contextPath}/images/device/${dto.thumbnail}" class="dev-img rounded float-start img-fluid border" alt="기기 이미지">

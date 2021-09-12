@@ -38,6 +38,7 @@ import com.angelPods.command.member.MWithdrawCommand;
 import com.angelPods.command.mypage.MyContentsViewCommand;
 import com.angelPods.command.mypage.MyMainViewCommand;
 import com.angelPods.command.mypage.MyModifyCommand;
+import com.angelPods.command.mypage.MyModifyPWCommand;
 import com.angelPods.command.mypage.MyModifyViewCommand;
 
 @WebServlet("*.do")
@@ -225,6 +226,16 @@ public class FrontController extends HttpServlet {
 			command = new MyModifyCommand();
 			command.execute(request, response);
 			viewPage = "/mypage/modify_action.jsp";
+			
+		} else if (com.equals("my_modifyPW_view.do")) {
+			command = new MyModifyViewCommand();
+			command.execute(request, response);
+			viewPage = "/mypage/modifyPW_view.jsp";
+			
+		} else if (com.equals("my_modifyPW.do")) {
+			command = new MyModifyPWCommand();
+			command.execute(request, response);
+			viewPage = "/mypage/modifyPW_action.jsp";
 		}
 		
 //------------------admin---------------------

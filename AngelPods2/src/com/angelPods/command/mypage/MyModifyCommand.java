@@ -16,7 +16,6 @@ public class MyModifyCommand implements Command {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		String userId = (String) session.getAttribute("userId");
 		

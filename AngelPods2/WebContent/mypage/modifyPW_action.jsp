@@ -7,14 +7,14 @@
 	if(ri == 1) {
 %>
 	<script language = "javascript">
-		alert("정상적으로 수정되었습니다.");
+		alert("비밀번호가 변경되었습니다.");
   		document.location.href="../mypage/main.jsp";
 	</script>
 	
 <% } else if(ri == -1){ %>
 
    	<script language = "javascript">
-   		alert("정상적으로 수정되었습니다.");
+   		alert("비밀번호 변경을 실패했습니다.");
    		document.location.href="../mypage/main.jsp";
    	</script>
     	

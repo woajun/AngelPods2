@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <% if(request.getAttribute("Valid") == null){ %>
-	<jsp:forward page = "my_modify_view.do"/>
+	<jsp:forward page = "my_modifyPW_view.do"/>
 <% } %>
 <!DOCTYPE html>
 <html>
@@ -18,11 +18,12 @@
   #userBox .row{--bs-gutter-x:0;}
   #userBox #userInfo td{padding-left: 13px;}
   #userBox #userInfo table{width:90%;margin: 10px 0 10px 20px;}
-  #userBox th{width: 93px; font-size: 15px;}
+  #userBox th{width: 98px; font-size: 15px;}
   @media (min-width: 576px) {
   #userBox #userInfo table{margin-left:0px;}
   }
   .pt10px {padding-top: 10px;}
+  .wid100 {width:100%;}
 </style>
 
 </head>
@@ -69,35 +70,30 @@
 
 <!-- body -->
 <div id="userBox" class="container">
-  <form action = "my_modify_action.do" method = "post" enctype="multipart/form-data">
+  <form action = "my_modifyPW.do" method = "post" >
     <div class="row">
       <div class="col-lg-2"></div>
       <div class="col-12 col-lg-8">
-      <h3 class="fs-5 mt-4"><strong>${mDto.name}</strong> 님의 페이지</h3>
+      <h3 class="fs-5 mt-4"><strong>비밀번호 변경</strong></h3>
           <div id="userInfo" class="row border rounded shadow-sm py-3 mb-2">
-              <div class="col-12 col-sm-4 text-center pt10px">
-                
-                <label for="inputImg" class="my-1">
-                  <img id="userImg" class="rounded" src="../image/person-square.svg" width="100" height="100">
-                </label>
-                <br/>
-                <label class="btn btn-outline-dark py-1" for="inputImg">이미지 선택</label>
-                <input type="file" id="inputImg" accept=".jpg, .jpeg, .png" style="display: none;">
-
-              </div>
+          	  <div class="col-sm-2"></div>
               <div class="col-12 col-sm-8">
                   <table>
                   <tbody>
                       <tr>
-                          <th>아이디</th>
-                          <td>${mDto.userId}</td>
-                      </tr>
-                      <tr>
                           <th>
-                            <label for="pw" >비밀번호</label>
+                            <label for="pw" >현재 비밀번호</label>
                           </th>
                           <td>
                           <input id="pw" name="pw" class="form-control" type="password" >    
+                          </td>
+                      </tr>
+                      <tr>
+                          <th>
+                            <label for="new-pw" >새 비밀번호</label>
+                          </th>
+                          <td>
+                          <input id="new-pw" name="newPW" class="form-control" type="password" >    
                           </td>
                       </tr>
                       <tr>
@@ -108,32 +104,12 @@
                           <input id="pw-chk" class="form-control" type="password" >    
                           </td>
                       </tr>
-                      <tr>
-                          <th>
-                            <label for="name">닉네임</label>
-                           </th>
-                          <td>
-                          <input id="name" name="name" class="form-control" type="text" value="${mDto.name}" required>    
-                          </td>
-                      </tr>
-                      <tr>
-                          <th>가입일</th>
-                          <td>${mDto.rDate}</td>
-                      </tr>
-                      <tr>
-                          <th>
-                            <label for="mail">이메일</label>
-                           </th>
-                          <td>
-                          <input id="mail" name="mail" class="form-control" type="text" value="${mDto.eMail}" required>    
-                          </td>
-                      </tr>
                   </tbody>
                   </table>
               </div>
           </div>
           <div class="col-12 mb-2">
-              <button type="submit" class="btn btn-outline-secondary d-grid shadow-sm border">정보수정</button>
+              <button type="submit" class="btn btn-outline-secondary d-grid shadow-sm border wid100">정보수정</button>
           </div>
           <div class="col-12 mb-2">
               <a href="../mypage/main.jsp" class="btn btn-outline-secondary d-grid shadow-sm border">취소</a>
