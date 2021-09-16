@@ -14,6 +14,7 @@ import com.angelPods.command.admin.ACategoryViewCommand;
 import com.angelPods.command.device.DAddCommand;
 import com.angelPods.command.device.DAddViewCommand;
 import com.angelPods.command.device.DDeleteCommand;
+import com.angelPods.command.exer.EAddBookmarkCommand;
 import com.angelPods.command.find.FContentViewCommand;
 import com.angelPods.command.find.FDeleteCommand;
 import com.angelPods.command.find.FListCommand;
@@ -32,7 +33,6 @@ import com.angelPods.command.member.MContentCommand;
 import com.angelPods.command.member.MJoinCommand;
 import com.angelPods.command.member.MLoginCommand;
 import com.angelPods.command.member.MLogoutCommand;
-import com.angelPods.command.member.MModifyCommand;
 import com.angelPods.command.member.MPrintAll;
 import com.angelPods.command.member.MWithdrawCommand;
 import com.angelPods.command.mypage.MyContentsViewCommand;
@@ -97,11 +97,6 @@ public class FrontController extends HttpServlet {
 			command = new MContentCommand();
 			command.execute(request, response);
 			viewPage = "/member/modify.jsp";
-			
-		} else if (com.equals("member_modify.do")) {
-			command = new MModifyCommand();
-			command.execute(request, response);
-			viewPage = "/member/modifyOk.jsp";
 			
 		} else if (com.equals("member_withdraw.do")) {
 			command = new MWithdrawCommand();
@@ -249,6 +244,14 @@ public class FrontController extends HttpServlet {
 //			command = new MyContentsViewCommand();
 //			command.execute(request, response);
 //			viewPage = "/mypage/contents.jsp";
+		}
+		
+		
+//		--------------------exercise
+		if (com.equals("add_bookmark.do")) {
+			command = new EAddBookmarkCommand();
+			command.execute(request, response);
+			viewPage = "/addNewUser.jsp";
 		}
 			
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
