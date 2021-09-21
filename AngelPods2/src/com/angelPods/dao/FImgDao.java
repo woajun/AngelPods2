@@ -20,7 +20,7 @@ public class FImgDao {
 	private FImgDao() {
 		try {
 			Context context = new InitialContext();
-			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
+			dataSource = (DataSource) context.lookup("java:comp/env/jdbc/mysql");
 			
 		} catch (Exception e) {
 			// TODO: handle exception

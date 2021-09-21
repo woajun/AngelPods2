@@ -15,6 +15,26 @@ public class MemberDao {
 	
 	private static MemberDao instance = new MemberDao();
 	
+	
+	private Connection getConnection() {
+		//lookup을 쓰기위해 context를 만든다. lookup 메소드로 오라클의 경로에 있는 오라클을 찾아서 datasource에 경로를 알려준다.
+		//datasource는 lookup이 알려준 경로를 필드로 갖고 있다가, getConnection 메소드로 오라클과 연결한다.
+		//DB가 연결된 상태에서, 자유자재로 메소드를 사용해서 소통하기 위해 connection 인터페이스에 넣어준다.
+		
+		Context context = null;
+		DataSource dataSource = null;
+		Connection connection = null;
+		try {
+			context = new InitialContext();
+			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/mysql");
+			connection = dataSource.getConnection();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return connection;
+	}
+	
 	private MemberDao() {
 	}
 	
@@ -104,24 +124,7 @@ public class MemberDao {
 	
 	
 	
-	private Connection getConnection() {
-		//lookup을 쓰기위해 context를 만든다. lookup 메소드로 오라클의 경로에 있는 오라클을 찾아서 datasource에 경로를 알려준다.
-		//datasource는 lookup이 알려준 경로를 필드로 갖고 있다가, getConnection 메소드로 오라클과 연결한다.
-		//DB가 연결된 상태에서, 자유자재로 메소드를 사용해서 소통하기 위해 connection 인터페이스에 넣어준다.
-		
-		Context context = null;
-		DataSource dataSource = null;
-		Connection connection = null;
-		try {
-			context = new InitialContext();
-			dataSource = (DataSource)context.lookup("java:comp/env/jdbc/Oracle11g");
-			connection = dataSource.getConnection();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return connection;
-	}
+
 	
 	public int confirmUserId(String userId) {
 		int ri = 0;
