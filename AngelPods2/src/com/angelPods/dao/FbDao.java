@@ -3,6 +3,7 @@ package com.angelPods.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -35,51 +36,49 @@ public class FbDao {
 			String sido, String gue, String dong , String addrDetail, String title, String contents, String sn, String lat, String lng) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
+		int pk = -1;
 		
-		//TODO 쭌 : select와 insert를 함께 사용해서 트랜잭션으로 문제 생길 수 있고 해답은 to 트랜잭션 공부할 것
-		int fbNum = -1;
-		try {
-			con = dataSource.getConnection();
-			String sqlIdentifier = "select FIND_BOARD_SEQ.NEXTVAL from dual";
-			pstmt = con.prepareStatement(sqlIdentifier);
-			ResultSet rsNum = pstmt.executeQuery();
-			if (rsNum.next()) {
-				fbNum = rsNum.getInt(1);
-			}
-		} catch(Exception e) {
-			e.printStackTrace();
-			
-		//TODO 0905 추가함 테스트필요.================
-		} finally {
-			try {
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		//===============================
-		
+		/*
+		 * //TODO 쭌 : select와 insert를 함께 사용해서 트랜잭션으로 문제 생길 수 있고 해답은 to 트랜잭션 공부할 것 int
+		 * fbNum = -1; try { con = dataSource.getConnection(); String sqlIdentifier =
+		 * "SELECT AUTO_INCREMENT " + "FROM information_schema.tables " +
+		 * "WHERE table_name = 'FIND_BOARD' " + "AND table_schema = DATABASE( ) ;";
+		 * pstmt = con.prepareStatement(sqlIdentifier); ResultSet rsNum =
+		 * pstmt.executeQuery(); if (rsNum.next()) { fbNum = rsNum.getInt(1); } }
+		 * catch(Exception e) { e.printStackTrace();
+		 * 
+		 * //TODO 0905 추가함 테스트필요.================ } finally { try { if(pstmt != null)
+		 * pstmt.close(); if(con != null) con.close(); } catch (Exception e2) {
+		 * e2.printStackTrace(); } } //===============================
+		 */		
 		try {
 			con = dataSource.getConnection();
 			String query = "insert into find_board "
-					+ "(fb_num, userid, c_num, cd_num, sido, gue, dong, addrdetail, title, contents, sn, lat, lng) values"
-					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, fbNum);
-			pstmt.setString(2, userId);
-			pstmt.setInt(3, cNum);
-			pstmt.setInt(4, cdNum);
-			pstmt.setString(5, sido);
-			pstmt.setString(6, gue);
-			pstmt.setString(7, dong);
-			pstmt.setString(8, addrDetail);
-			pstmt.setString(9, title);
-			pstmt.setString(10, contents);
-			pstmt.setString(11, sn);
-			pstmt.setString(12, lat);
-			pstmt.setString(13, lng);
+					+ "(userid, c_num, cd_num, sido, gue, dong, addrdetail, title, contents, sn, lat, lng) values"
+					+ "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			pstmt = con.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
+//			pstmt.setInt(1, fbNum);
+			pstmt.setString(1, userId);
+			pstmt.setInt(2, cNum);
+			pstmt.setInt(3, cdNum);
+			pstmt.setString(4, sido);
+			pstmt.setString(5, gue);
+			pstmt.setString(6, dong);
+			pstmt.setString(7, addrDetail);
+			pstmt.setString(8, title);
+			pstmt.setString(9, contents);
+			pstmt.setString(10, sn);
+			pstmt.setString(11, lat);
+			pstmt.setString(12, lng);
 			pstmt.executeUpdate();
+			
+			
+			try(ResultSet rs = pstmt.getGeneratedKeys()){
+				if(rs.next()) {
+					pk = rs.getInt(1);
+				}
+			}
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -90,7 +89,7 @@ public class FbDao {
 				e2.printStackTrace();
 			}
 		}
-		return fbNum;
+		return pk;
 	}
 	
 	public ArrayList<FbDto> list() {

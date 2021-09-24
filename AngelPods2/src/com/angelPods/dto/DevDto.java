@@ -8,7 +8,7 @@ public class DevDto {
 	private String userId;
 	private int cdNum;
 	private String bodySN;
-	private Timestamp timestamp;
+	private Timestamp rDate;
 	private String thumbnail;
 	private String leftSN;
 	private String rightSN;
@@ -19,7 +19,7 @@ public class DevDto {
 		this.userId = userId;
 		this.cdNum = cdNum;
 		this.bodySN = bodySN;
-		this.timestamp = timestamp;
+		this.rDate = timestamp;
 	}
 	
 	public DevDto(int devNum, String userId, int cdNum, String bodySN, Timestamp timestamp, String thumbnail) {
@@ -28,7 +28,7 @@ public class DevDto {
 		this.userId = userId;
 		this.cdNum = cdNum;
 		this.bodySN = bodySN;
-		this.timestamp = timestamp;
+		this.rDate = timestamp;
 		this.thumbnail = thumbnail;
 	}
 	
@@ -41,7 +41,7 @@ public class DevDto {
 		this.userId = userId;
 		this.cdNum = cdNum;
 		this.bodySN = bodySN;
-		this.timestamp = timestamp;
+		this.rDate = timestamp;
 		this.thumbnail = thumbnail;
 		this.leftSN = leftSN;
 		this.rightSN = rightSN;
@@ -80,11 +80,11 @@ public class DevDto {
 	}
 
 	public Timestamp getTimestamp() {
-		return timestamp;
+		return rDate;
 	}
 
 	public void setTimestamp(Timestamp timestamp) {
-		this.timestamp = timestamp;
+		this.rDate = timestamp;
 	}
 
 	public String getThumbnail() {

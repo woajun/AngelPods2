@@ -20,6 +20,7 @@ import com.angelPods.command.find.FDeleteCommand;
 import com.angelPods.command.find.FListCommand;
 import com.angelPods.command.find.FModifyCommand;
 import com.angelPods.command.find.FModifyViewCommand;
+import com.angelPods.command.find.FSearchCommand;
 import com.angelPods.command.find.FWriteActionCommand;
 import com.angelPods.command.find.FWriteViewCommand;
 import com.angelPods.command.lost.LContentViewCommand;
@@ -141,7 +142,12 @@ public class FrontController extends HttpServlet {
 			command = new FDeleteCommand();
 			command.execute(request, response);
 			viewPage = "/find/delete_action.jsp";
-		}
+
+		} else if (com.equals("f_search.do")) {
+			command = new FSearchCommand();
+			command.execute(request, response);
+			viewPage = "/find/list_view.jsp";
+		} 
 		
 //------------------LOST---------------------
 		
