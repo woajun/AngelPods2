@@ -3,7 +3,7 @@
 <% if(session.getAttribute("ValidMem") != null){ %>
 <script>
 alert("로그인 상태에는 회원가입 할 수 없습니다.")
-location.href="../index.html";
+location.href="../index.jsp";
 </script>
 <% } %> 
 <!DOCTYPE html>

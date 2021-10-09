@@ -25,6 +25,8 @@ public class MLoginCommand implements Command {
 			ri = 2;
 		}else if (checkNum == 0 ) {
 			ri = 3;
+		}else if (checkNum == 5 ) {
+			ri = 5;
 		}else if (checkNum == 1) {
 			MemberDto dto = dao.getMember(userId);
 			if(dto == null) {

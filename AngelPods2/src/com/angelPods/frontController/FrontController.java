@@ -92,7 +92,7 @@ public class FrontController extends HttpServlet {
 		} else if (com.equals("logout.do")) {
 			command = new MLogoutCommand();
 			command.execute(request, response);
-			viewPage = "/member/login.jsp";
+			viewPage = "/find/list_view.jsp";
 			
 		} else if (com.equals("modify_view.do")) {
 			command = new MContentCommand();

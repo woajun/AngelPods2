@@ -43,7 +43,7 @@ public class MemberDao {
 	}
 	
 	public int userCheck(String userId, String pw) {
-		int ri = 0;
+		int ri = -5;
 		String dbPw;
 		
 		Connection con = null;

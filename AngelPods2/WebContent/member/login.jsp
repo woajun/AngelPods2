@@ -74,11 +74,11 @@
         <br>
     
         <div class="form-floating">
-          <input type="text" class="form-control" id="floaingInput" name="userId" placeholder="name">
+          <input type="text" class="form-control" id="floaingInput" name="userId" placeholder="name" value="test" >
           <label for="floatingInput">아이디</label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" name="pw" placeholder="Password">
+          <input type="password" class="form-control" id="floatingPassword" name="pw" placeholder="Password" value="test">
           <label for="floatingPassword">비밀번호</label>
         </div>
         <div class="checkbox mb-3">

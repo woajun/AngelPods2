@@ -31,6 +31,13 @@
 		alert("비밀번호가 틀립니다.");
 		history.go(-1);
 	</script>
+
+<% } else if(ri == 5){ %>
+
+	<script language = "javascript">
+		alert("연결이 실패했습니다.");
+		history.go(-1);
+	</script>
 	
 <% } else if(ri == 4){ %>
 
